@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Logo } from "../components/logo.tsx";
-import { Button } from "../components/button.tsx";
-import { Input } from "../components/input.tsx";
+import { Logo } from "../../../components/logo.tsx";
+import { Button } from "../../../components/button.tsx";
+import { Input } from "../../../components/input.tsx";
 
 export function Auth({ register = false }: { register?: boolean }) {
 	const nav = useNavigate();
@@ -37,7 +37,7 @@ export function Auth({ register = false }: { register?: boolean }) {
 								? "Join the reader network or start a library."
 								: "Sign in to continue."}
 						</p>
-						
+
 						<form
 							onSubmit={(e) => {
 								e.preventDefault();
@@ -87,11 +87,8 @@ export function Auth({ register = false }: { register?: boolean }) {
 								{register ? "Sign in" : "Create an account"}
 							</Link>
 						</p>
-
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	);

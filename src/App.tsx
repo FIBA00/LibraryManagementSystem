@@ -3,17 +3,23 @@ import { Routes, Route, Navigate } from "react-router-dom";
 // components
 import { Navbar } from "../src/components/navbar.tsx";
 import { Footer } from "../src/components/footer.tsx";
+
 // Pages
 import { Home } from "./pages/home.tsx";
 import { Books } from "./pages/books.tsx";
 import { ForLibraries } from "./pages/forLibraries.tsx";
 import { Libraries } from "./pages/libraries.tsx";
 
-import { Auth } from "./pages/auth.tsx";
+import { Login } from "./features/auth/pages/login.tsx";
+import { Signup } from "./features/auth/pages/signup.tsx";
+
+
+
 import { Reader, Owner, Placeholder } from "./pages/portal.tsx";
 
 export default function App() {
 	return (
+		<>
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
@@ -21,8 +27,10 @@ export default function App() {
 				<Route path="/books" element={<Books />} />
 				<Route path="/libraries" element={<Libraries />} />
 				<Route path="/for-libraries" element={<ForLibraries />} />
-				<Route path="/login" element={<Auth />} />
-				<Route path="/register" element={<Auth register />} />
+
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Signup />} />
+
 				<Route path="/reader" element={<Reader />} />
 				{/*
 
@@ -90,5 +98,6 @@ export default function App() {
 				<Route path="*" element={<Navigate to="/" replace />} /> */}
 			</Routes>
 			<Footer />
+		</>
 	);
 }
