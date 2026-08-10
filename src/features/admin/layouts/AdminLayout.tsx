@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+
 import {
 	Bell,
 	BookOpen,
@@ -14,7 +15,8 @@ import {
 	Users,
 	X,
 } from "lucide-react";
-import { cn } from "../lib/utils";
+
+import { cn } from "../lib/utils.ts";
 
 const sections = [
 	{

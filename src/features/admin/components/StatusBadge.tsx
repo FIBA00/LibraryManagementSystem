@@ -1,5 +1,5 @@
-import { cn } from "../features/Admin/lib/utils";
-import type { RegistrationStatus } from "../features/Admin/data/mock";
+import { cn } from "../lib/utils.ts";
+import type { RegistrationStatus } from "../features/admin/data/mock.ts";
 
 export function StatusBadge({ status }: { status: RegistrationStatus }) {
 	const styles: Record<RegistrationStatus, string> = {

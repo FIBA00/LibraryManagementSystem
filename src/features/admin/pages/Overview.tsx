@@ -7,10 +7,12 @@ import {
 	AlertTriangle,
 } from "lucide-react";
 import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip } from "recharts";
-import { libraries } from "../data/mock";
-import { StatusBadge } from "../components/StatusBadge";
-import { formatDate } from "../lib/utils";
 import { Link } from "react-router-dom";
+
+// internal imports
+import { libraries } from "../data/mock.ts";
+import { StatusBadge } from "../components/StatusBadge.jsx";
+import { formatDate } from "../lib/utils.ts";
 
 const activity = [
 	{ day: "Mon", value: 42 },
@@ -22,6 +24,7 @@ const activity = [
 	{ day: "Sun", value: 69 },
 ];
 const pending = libraries.filter((l) => l.status === "pending");
+
 function Stat({
 	label,
 	value,

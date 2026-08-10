@@ -1,69 +1,88 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { AdminLayout } from "./layouts/AdminLayout";
-import { Overview } from "./pages/Overview";
-import { Libraries } from "./pages/Libraries";
-import { LibraryDetail } from "./pages/LibraryDetail";
-import { Placeholder } from "./pages/Placeholder";
-import { Layout } from "../../components/Layout";
-import { Registrations } from "./pages/Registrations";
-import { Generic } from "./pages/Generic";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+// Pages
+import { Home } from "./pages/home.tsx";
+// import { Books } from "./pages/books.tsx";
+// import { ForLibraries } from "./pages/forLibraries.tsx";
+// import { Libraries } from "./pages/libraries.tsx";
+
+// import { Auth } from "./pages/auth";
+// import { Reader, Owner, Placeholder } from "./pages/portal";
+
 export default function App() {
 	return (
 		<BrowserRouter>
-			<AdminLayout>
-				<Routes>
-					<Route path="/" element={<Overview />} />
-					<Route path="/registrations" element={<Registrations />} />
-					<Route
-						path="/libraries"
-						element={<Generic type="libraries" />}
-					/>
-					<Route path="/users" element={<Generic type="users" />} />
-					<Route path="/books" element={<Generic type="books" />} />
-					<Route
-						path="/borrowing"
-						element={<Generic type="borrowing" />}
-					/>
-					<Route
-						path="/reports"
-						element={<Generic type="reports" />}
-					/>
-					<Route
-						path="/settings"
-						element={<Generic type="settings" />}
-					/>
-					<Route path="/admin" element={<Overview />} />
-					<Route path="/admin/libraries" element={<Libraries />} />
-					<Route
-						path="/admin/libraries/:id"
-						element={<LibraryDetail />}
-					/>
-					<Route
-						path="/admin/books"
-						element={<Placeholder title="Books & catalog" />}
-					/>
-					<Route
-						path="/admin/borrowings"
-						element={<Placeholder title="Borrowings" />}
-					/>
-					<Route
-						path="/admin/members"
-						element={<Placeholder title="Members" />}
-					/>
-					<Route
-						path="/admin/reports"
-						element={<Placeholder title="Reports" />}
-					/>
-					<Route
-						path="/admin/settings"
-						element={<Placeholder title="Settings" />}
-					/>
-					<Route
-						path="*"
-						element={<Navigate to="/admin" replace />}
-					/>
-				</Routes>
-			</AdminLayout>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				{/* <Route path="/books" element={<Books />} />
+				<Route path="/libraries" element={<Libraries />} />
+				<Route path="/for-libraries" element={<ForLibraries />} />
+				<Route path="/login" element={<Auth />} />
+				<Route path="/register" element={<Auth register />} />
+				<Route path="/reader" element={<Reader />} />
+				<Route
+					path="/reader/borrowings"
+					element={
+						<Placeholder title="My Borrowings" role="reader" />
+					}
+				/>
+				<Route
+					path="/reader/libraries"
+					element={<Placeholder title="My Libraries" role="reader" />}
+				/>
+				<Route
+					path="/reader/profile"
+					element={<Placeholder title="Profile" role="reader" />}
+				/>
+				<Route path="/owner" element={<Owner />} />
+				<Route
+					path="/owner/books"
+					element={
+						<Placeholder title="Library Catalog" role="owner" />
+					}
+				/>
+				<Route
+					path="/owner/members"
+					element={
+						<Placeholder title="Library Members" role="owner" />
+					}
+				/>
+				<Route
+					path="/owner/borrowings"
+					element={<Placeholder title="Borrowings" role="owner" />}
+				/>
+				<Route
+					path="/owner/analytics"
+					element={<Placeholder title="Analytics" role="owner" />}
+				/>
+				<Route
+					path="/owner/settings"
+					element={
+						<Placeholder title="Library Settings" role="owner" />
+					}
+				/>
+				<Route
+					path="/admin"
+					element={<Navigate to="/admin-dashboard" replace />}
+				/>
+				<Route
+					path="/admin-dashboard"
+					element={
+						<div className="grid min-h-screen place-items-center bg-slate-50">
+							<div className="max-w-lg text-center">
+								<h1 className="text-3xl font-black">
+									Existing Admin Dashboard
+								</h1>
+								<p className="mt-3 text-slate-500">
+									Mount the admin dashboard you already built
+									here.
+								</p>
+							</div>
+						</div>
+					}
+				/>
+				<Route path="*" element={<Navigate to="/" replace />} /> */}
+			</Routes>
 		</BrowserRouter>
 	);
 }

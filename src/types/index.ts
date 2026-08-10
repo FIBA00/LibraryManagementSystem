@@ -1,12 +1,18 @@
-export type LibraryStatus = "pending" | "approved" | "rejected" | "suspended";
 export type Library = {
 	id: string;
 	name: string;
-	ownerId: string;
-	status: LibraryStatus;
-	address: string;
-	proofDocumentUrl: string | null;
-	reviewedBy: string | null;
-	reviewedAt: string | null;
-	createdAt: string;
+	location: string;
+	description: string;
+	status: "pending" | "approved" | "suspended" | "rejected";
+	books: number;
+	members: number;
+};
+export type Book = {
+	id: string;
+	title: string;
+	author: string;
+	category: string;
+	available: number;
+	total: number;
+	cover: string;
 };

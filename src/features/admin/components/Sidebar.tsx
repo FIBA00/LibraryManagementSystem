@@ -13,7 +13,7 @@ import {
 	Users,
 	X,
 } from "lucide-react";
-import { cn } from "../features/Admin/lib/utils";
+import { cn } from "../lib/utils.ts";
 
 const items = [
 	{ to: "/", label: "Overview", icon: LayoutDashboard },
