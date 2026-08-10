@@ -1,23 +1,12 @@
-import { Link } from "react-router-dom";
-import {
-	ArrowRight,
-	BookOpen,
-	Building2,
-	Search,
-	Sparkles,
-} from "lucide-react";
-
 // Components
-import { Navbar, Footer } from "../components/layout";
-import { Button, Input } from "../components/button";
-import { BookCard, LibraryCard } from "../components/bookCard";
 
-import { books, libraries } from "../data/mock";
+import { Input } from "../components/input.tsx";
+import { BookCard } from "../components/bookCard.tsx";
+import { books } from "../data/mock.ts";
 
 export function Books() {
 	return (
 		<>
-			<Navbar />
 			<main className="min-h-screen bg-slate-50">
 				<div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
 					<p className="text-sm font-bold uppercase tracking-widest text-amber-600">
@@ -40,7 +29,6 @@ export function Books() {
 					</div>
 				</div>
 			</main>
-			<Footer />
 		</>
 	);
 }

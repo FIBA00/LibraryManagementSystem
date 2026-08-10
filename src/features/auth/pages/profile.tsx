@@ -1,8 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Logo } from "../components/layout";
-import { Input, Button } from "../components/button";
-export function Auth({ register = false }: { register?: boolean }) {
-	let nav = useNavigate();
+import {useQuery} from "@tanstack/react-query"
+
+import { Logo } from "../components/logo.tsx";
+import { Button } from "../components/button.tsx";
+import { Input } from "../components/input.tsx";
+
+import {request} from "../../api/clients.ts"
+import {UserProfile, UserSignup} from "../types/userType.ts"
+
+
+export async function fetchProfile(id: string): Promise<UserProfile> {
+	const data = await request<{profile: UserProfile}>(`/users/me/${id}`);
+	return data
+}
+
+export function Profile({ register = false }: { register?: boolean }) {
+	const nav = useNavigate();
+
 	return (
 		<div className="min-h-screen bg-slate-50">
 			<div className="mx-auto flex min-h-screen max-w-7xl">
@@ -21,6 +35,7 @@ export function Auth({ register = false }: { register?: boolean }) {
 						</p>
 					</div>
 				</div>
+
 				<div className="flex flex-1 items-center justify-center p-6">
 					<div className="w-full max-w-md">
 						<div className="mb-8 lg:hidden">
@@ -34,6 +49,7 @@ export function Auth({ register = false }: { register?: boolean }) {
 								? "Join the reader network or start a library."
 								: "Sign in to continue."}
 						</p>
+						
 						<form
 							onSubmit={(e) => {
 								e.preventDefault();
@@ -72,6 +88,7 @@ export function Auth({ register = false }: { register?: boolean }) {
 								{register ? "Create account" : "Sign in"}
 							</Button>
 						</form>
+
 						<p className="mt-6 text-center text-sm text-slate-500">
 							{register
 								? "Already have an account?"
@@ -82,8 +99,11 @@ export function Auth({ register = false }: { register?: boolean }) {
 								{register ? "Sign in" : "Create an account"}
 							</Link>
 						</p>
+
 					</div>
 				</div>
+
+
 			</div>
 		</div>
 	);

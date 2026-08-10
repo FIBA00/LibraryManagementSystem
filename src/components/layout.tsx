@@ -15,7 +15,7 @@ import {
 import type { ReactNode } from "react";
 
 // utils
-import { cn } from "../lib/utils.tsx";
+import { cn } from "../lib/utils.ts";
 
 const reader = [
 	["Overview", "/reader", LayoutDashboard],

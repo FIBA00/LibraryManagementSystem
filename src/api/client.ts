@@ -1,10 +1,10 @@
 import type { Library, LibraryStatus } from "../types";
 
 const API_URL = (
-	import.meta.env.VITE_API_URL ?? "http://localhost:5000/api"
+	import.meta.env.VITE_API_URL ?? "http://localhost:8001/api"
 ).replace(/\/$/, "");
 
-async function request<T>(path: string, options?: RequestInit): Promise<T> {
+export async function request<T>(path: string, options?: RequestInit): Promise<T> {
 	const token = localStorage.getItem("accessToken");
 	const response = await fetch(`${API_URL}${path}`, {
 		...options,

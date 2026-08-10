@@ -1,7 +1,11 @@
 // utils
 import { Logo } from "../components/logo.tsx";
+import { Link } from "react-router-dom";
+
 
 export function Footer() {
+	const linkClass = `mt-3 text-sm text-slate-500 hover:text-green-600`
+	
 	return (
 		<footer className="border-t bg-white">
 			<div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-4 lg:px-8">
@@ -12,35 +16,23 @@ export function Footer() {
 						platform.
 					</p>
 				</div>
-				<div>
+				<div className="flex flex-col">
 					<b>Discover</b>
-					<p className="mt-3 text-sm text-slate-500">
-						Find books
-						<br />
-						Libraries
-						<br />
-						Collections
-					</p>
+					<Link to="/books" className={linkClass}>Find books</Link>
+					<Link to="/libraries" className={linkClass}>Libraries</Link>
+					<Link to="/collections" className={linkClass}>Collections</Link>
 				</div>
-				<div>
+				<div className="flex flex-col">
 					<b>Libraries</b>
-					<p className="mt-3 text-sm text-slate-500">
-						Manage a library
-						<br />
-						Pricing
-						<br />
-						Resources
-					</p>
+					<Link to="/mylibrary" className={linkClass}>Manage a library</Link>
+					<Link to="/pricing" className={linkClass}>Pricing</Link>
+					<Link to="/resources" className={linkClass}>Resources</Link>
 				</div>
-				<div>
+				<div className="flex flex-col">
 					<b>Company</b>
-					<p className="mt-3 text-sm text-slate-500">
-						About
-						<br />
-						Contact
-						<br />
-						Privacy
-					</p>
+					<Link to="/about" className={linkClass}>About</Link>
+					<Link to="/contact" className={linkClass}>Contact</Link>
+					<Link to="/privacy" className={linkClass}>Privacy</Link>
 				</div>
 			</div>
 		</footer>

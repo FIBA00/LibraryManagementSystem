@@ -1,14 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-// Components
-import { Navbar, Footer } from "../components/layout";
 import { Button } from "../components/button";
 
 export function ForLibraries() {
 	return (
 		<>
-			<Navbar />
 			<section className="bg-[#17202a] text-white">
 				<div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
 					<p className="font-bold uppercase tracking-widest text-amber-400">
@@ -48,7 +45,6 @@ export function ForLibraries() {
 					))}
 				</div>
 			</section>
-			<Footer />
 		</>
 	);
 }

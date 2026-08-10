@@ -8,8 +8,6 @@ import {
 } from "lucide-react";
 
 // Components
-import { Navbar } from "../components/navbar.tsx";
-import { Footer } from "../components/footer.tsx";
 
 import { Button } from "../components/button.tsx";
 import { BookCard } from "../components/bookCard.tsx";
@@ -19,7 +17,6 @@ import { books } from "../data/mock";
 export function Home() {
 	return (
 		<>
-			<Navbar />
 			<main>
 				<section className="bg-[#17202a] text-white">
 					<div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[1.1fr_.9fr] lg:items-center lg:px-8 lg:py-28">
@@ -146,7 +143,6 @@ export function Home() {
 					</div>
 				</section>
 			</main>
-			<Footer />
 		</>
 	);
 }

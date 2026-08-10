@@ -1,25 +1,31 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
+// components
+import { Navbar } from "../src/components/navbar.tsx";
+import { Footer } from "../src/components/footer.tsx";
 // Pages
 import { Home } from "./pages/home.tsx";
-// import { Books } from "./pages/books.tsx";
-// import { ForLibraries } from "./pages/forLibraries.tsx";
-// import { Libraries } from "./pages/libraries.tsx";
+import { Books } from "./pages/books.tsx";
+import { ForLibraries } from "./pages/forLibraries.tsx";
+import { Libraries } from "./pages/libraries.tsx";
 
-// import { Auth } from "./pages/auth";
-// import { Reader, Owner, Placeholder } from "./pages/portal";
+import { Auth } from "./pages/auth.tsx";
+import { Reader, Owner, Placeholder } from "./pages/portal.tsx";
 
 export default function App() {
 	return (
-		<BrowserRouter>
+			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
-				{/* <Route path="/books" element={<Books />} />
+
+				<Route path="/books" element={<Books />} />
 				<Route path="/libraries" element={<Libraries />} />
 				<Route path="/for-libraries" element={<ForLibraries />} />
 				<Route path="/login" element={<Auth />} />
 				<Route path="/register" element={<Auth register />} />
 				<Route path="/reader" element={<Reader />} />
+				{/*
+
 				<Route
 					path="/reader/borrowings"
 					element={
@@ -83,6 +89,6 @@ export default function App() {
 				/>
 				<Route path="*" element={<Navigate to="/" replace />} /> */}
 			</Routes>
-		</BrowserRouter>
+			<Footer />
 	);
 }
