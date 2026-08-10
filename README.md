@@ -42,42 +42,41 @@ LIMS is a modern, unified Software-as-a-Service (SaaS) platform designed for pub
 
 ## 2. Core Problem Statement
 
-* Operational Inefficiency: Manual tracking and outdated legacy software make inventory audits slow, labor-intensive, and prone to errors.
-* Frictional Circulation: Complex checkout workflows and rigid return systems create long wait times and discourage community engagement.
-* Fragmented Systems: Public and private libraries frequently use separate, disconnected tools for cataloging, communication, and penalty management.
+- Operational Inefficiency: Manual tracking and outdated legacy software make inventory audits slow, labor-intensive, and prone to errors.
+- Frictional Circulation: Complex checkout workflows and rigid return systems create long wait times and discourage community engagement.
+- Fragmented Systems: Public and private libraries frequently use separate, disconnected tools for cataloging, communication, and penalty management.
 
 ## 3. Key Value Propositions
 
-* Frictionless Circulation: Single-scan circulation engines speed up the renting and returning process for staff and patrons.
-* Universal Scalability: The system scales smoothly to handle small private personal collections or massive multi-branch public library networks.
-* Autonomous Operations: Automated self-service modules reduce the administrative workload on library staff.
+- Frictionless Circulation: Single-scan circulation engines speed up the renting and returning process for staff and patrons.
+- Universal Scalability: The system scales smoothly to handle small private personal collections or massive multi-branch public library networks.
+- Autonomous Operations: Automated self-service modules reduce the administrative workload on library staff.
 
 ## 4. Pillar Features & Capabilities
+
 ## 📚 Automated Inventory & Cataloging Matrix
 
-* Smart Cataloging: Instant metadata population through barcode, ISBN, or Library of Congress database integrations.
-* Real-Time Stock Audit: Live tracking of book locations, including specific branch, room, shelf, and current availability status.
-* Predictive Maintenance: Digital wear-and-tear logging that flags damaged items for repair before they return to general circulation.
+- Smart Cataloging: Instant metadata population through barcode, ISBN, or Library of Congress database integrations.
+- Real-Time Stock Audit: Live tracking of book locations, including specific branch, room, shelf, and current availability status.
+- Predictive Maintenance: Digital wear-and-tear logging that flags damaged items for repair before they return to general circulation.
 
 ## 🔄 Frictionless Circulation Engine
 
-* Instant Mobile Checkout: Patrons scan books with their smartphones to check them out instantly, skipping the service desk entirely.
-* Smart Return Dropboxes: RFID-enabled return slots that automatically check in books and instantly update inventory records upon drop-off.
-* Dynamic Waitlist Queues: Automated hold systems that instantly notify the next patron via SMS or email when a reserved book is returned.
+- Instant Mobile Checkout: Patrons scan books with their smartphones to check them out instantly, skipping the service desk entirely.
+- Smart Return Dropboxes: RFID-enabled return slots that automatically check in books and instantly update inventory records upon drop-off.
+- Dynamic Waitlist Queues: Automated hold systems that instantly notify the next patron via SMS or email when a reserved book is returned.
 
 ## 💸 Automated Compliance & Notifications
 
-* Adaptive Notifications: Multi-channel alerts (SMS, Email, Push) that remind patrons of upcoming due dates before penalties apply.
-* Micro-Fine Processing: Digital wallet integrations that allow patrons to view and pay late fees instantly through the app.
-* Institutional Policies: Customizable rule sets to match public lending terms or strict private archive security compliance.
+- Adaptive Notifications: Multi-channel alerts (SMS, Email, Push) that remind patrons of upcoming due dates before penalties apply.
+- Micro-Fine Processing: Digital wallet integrations that allow patrons to view and pay late fees instantly through the app.
+- Institutional Policies: Customizable rule sets to match public lending terms or strict private archive security compliance.
 
 ## 5. Target Audience Segments
 
-* Public Municipal Libraries: Civic systems requiring cross-branch book sharing, high-volume patron management, and public access portals.
-* Private Academic Libraries: Universities and research institutes needing deep citation tracking, digital archive integration, and access controls.
-* Corporate & Boutique Archives: Specialized legal, medical, or private corporate collections requiring strict chain-of-custody tracking.
-
-
+- Public Municipal Libraries: Civic systems requiring cross-branch book sharing, high-volume patron management, and public access portals.
+- Private Academic Libraries: Universities and research institutes needing deep citation tracking, digital archive integration, and access controls.
+- Corporate & Boutique Archives: Specialized legal, medical, or private corporate collections requiring strict chain-of-custody tracking.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
