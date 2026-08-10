@@ -1,0 +1,3 @@
+import type { ReactNode } from 'react'
+import { X } from 'lucide-react'
+export function Modal({title,children,onClose}:{title:string;children:ReactNode;onClose:()=>void}){return <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/50 p-4"><div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl"><div className="flex items-center justify-between border-b border-slate-200 px-5 py-4"><h3 className="font-semibold">{title}</h3><button onClick={onClose} className="rounded-lg p-1.5 hover:bg-slate-100"><X size={18}/></button></div><div className="p-5">{children}</div></div></div>}
