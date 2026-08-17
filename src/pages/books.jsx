@@ -26,7 +26,7 @@ export default function Books() {
 					</div>
 					<div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 						{books.map((book) => (
-							<BookCard key={book.id} b={book} />
+							<BookCard key={book.id} book={book} />
 						))}
 					</div>
 				</div>

@@ -11,7 +11,7 @@ import ForLibraries from "./pages/forLibraries.jsx";
 import NavBar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import LoginPage from "./features/auth/pages/login.jsx";
-import SignupPage from "./pages/signup.jsx";
+import SignupPage from "./features/auth/pages/signup.jsx";
 
 export default function App() {
 	return (

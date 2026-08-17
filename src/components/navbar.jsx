@@ -51,7 +51,7 @@ export default function NavBar() {
 
 	return (
 		<header
-			className={`fixed top-0 inset-x-0 z-50 px-2 gap-2 max-w-full bg-c-bg/9 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${
+			className={`sticky top-0 inset-x-0 z-40 px-2 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${
 				scrolled ? "shadow-card" : ""
 			}`}>
 			<div className="max-w-6xl mx-auto px-2">
@@ -78,8 +78,10 @@ export default function NavBar() {
 					{/* desktop right side */}
 					<div className="hidden md:flex items-center gap-3">
 						<LanguageSwitcher />
-						<NavLink to="/contact" className="btn-orange">
-							{t("nav.cta")}
+
+						{/* getting started */}
+						<NavLink to="/login" className="btn-orange">
+							{t("nav.login")}
 						</NavLink>
 					</div>
 
@@ -119,6 +121,8 @@ export default function NavBar() {
 						exit={{ height: 0, opacity: 0 }}
 						transition={{ duration: 0.2 }}
 						className="md:hidden border-t border-orange-edge/25 bg-c-card overflow-hidden">
+
+						
 						<div className="px-6 py-4 flex flex-col gap-4">
 							{NavLinks.map(({ key, to, label }) => (
 								<NavLink
@@ -129,13 +133,16 @@ export default function NavBar() {
 									{t(`nav.${key}`, label)}
 								</NavLink>
 							))}
+
 							<NavLink
-								to="/contact"
+								to="/login"
 								onClick={() => setMenuOpen(false)}
 								className="btn-orange text-center text-sm mt-1">
-								{t("nav.cta")}
+								{t("nav.login")}
 							</NavLink>
 						</div>
+
+
 					</motion.div>
 				)}
 			</AnimatePresence>

@@ -30,6 +30,7 @@ export default function Home() {
 		],
 	];
 
+	// TODO: scroll up on coming to home page
 	return (
 		<main>
 			<Hero />
@@ -63,8 +64,8 @@ export default function Home() {
 						Books people are reading
 					</h2>
 					<div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-						{books.map((b) => (
-							<BookCard key={b.id} b={b} />
+						{books.map((book) => (
+							<BookCard key={book.id} book={book} />
 						))}
 					</div>
 				</div>
