@@ -1,23 +1,33 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import Input from "../../../components/input.jsx";
 import Button from "../../../components/button.jsx";
-import { useLogin } from "../hooks/useAuth.js";
+import { useLogin } from "../hooks/auth.hooks.js";
 
 function LoginPage() {
-  const nav = useNavigate();
-  const login = useLogin();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    const nav = useNavigate();
+    const login = useLogin();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  function handleLoginSubmit(e) {
-    e.preventDefault();
-    login.mutate(
-      { email, password },
-      { onSuccess: () => nav("/reader") },
-    );
-  }
+    function handleLoginSubmit(e) {
+        e.preventDefault();
+        login.mutate(
+            { email, password },
+            {
+                onSuccess: function () {
+                    toast.success("Welcome back!");
+                    nav("/reader");
+                },
+                onError: function (err) {
+                    toast.error(err.message || "Login failed");
+                },
+            },
+        );
+    }
+
 
   return (
     <div className="w-full max-w-md p-4 rounded-2xl border-4 border-c-orange">

@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+
 
 //------------ internal imports----------------
 // Pages
@@ -17,6 +19,7 @@ import AuthLayout from "./features/auth/pages/authLayout.jsx";
 export default function App() {
 	return (
 		<div>
+			<Toaster position="top-center" />
 			<NavBar />
 			<Routes>
 				{/* essential pages */}
@@ -30,7 +33,6 @@ export default function App() {
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/register" element={<SignupPage />} />
 				</Route>
-				
 			</Routes>
 			<Footer />
 		</div>
