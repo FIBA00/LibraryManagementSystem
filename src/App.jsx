@@ -12,6 +12,7 @@ import NavBar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import LoginPage from "./features/auth/pages/login.jsx";
 import SignupPage from "./features/auth/pages/signup.jsx";
+import AuthLayout from "./features/auth/pages/authLayout.jsx";
 
 export default function App() {
 	return (
@@ -25,8 +26,11 @@ export default function App() {
 				<Route path="/for-libraries" element={<ForLibraries />} />
 
 				{/* Auth pages */}
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/register" element={<SignupPage />} />
+				<Route element={<AuthLayout />}>
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/register" element={<SignupPage />} />
+				</Route>
+				
 			</Routes>
 			<Footer />
 		</div>
