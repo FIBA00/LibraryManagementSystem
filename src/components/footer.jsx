@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-export default function Footer() {
-	return (
-		<footer>
-			<div>
-=======
 import Logo from "./logo.jsx";
 import { Link } from "react-router-dom";
 
@@ -56,7 +50,6 @@ export default function Footer() {
 						Privacy
 					</Link>
 				</div>
->>>>>>> a0a8e0c (- refactor: updated the entire frontend to use the jsx instead of the tsx)
 				<p>Copyright &copy; 2024 Library Management System</p>
 			</div>
 		</footer>

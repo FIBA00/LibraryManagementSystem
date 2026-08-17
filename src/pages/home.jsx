@@ -1,26 +1,15 @@
-<<<<<<< HEAD
-import Hero from "../components/hero.jsx";
-
-export default function Home() {
-    return (
-        <main>
-            <Hero />
-            <div>
-                <h1>
-                    Hello welcome explore libraries or create your own library
-                </h1>
-            </div>
-        </main>
-
-    )
-=======
 import { BookOpen, Building2, Search } from "lucide-react";
 import { Link } from "react-router-dom";
-import Hero from "../components/hero.jsx";
+
+
+// internal imports
 import { books } from "../data/mock_data.js";
-import BookCard from "../../typs/src/features/books/components/booksCard.jsx";
+import Hero from "../components/hero.jsx"
 import Button from "../components/button.jsx";
 import SearchSection from "../components/search.jsx";
+
+
+import BookCard from "../../src/features/books/components/booksCard.jsx";
 
 export default function Home() {
 	const explainers = [
@@ -100,5 +89,4 @@ export default function Home() {
 			</section>
 		</main>
 	);
->>>>>>> a0a8e0c (- refactor: updated the entire frontend to use the jsx instead of the tsx)
 }

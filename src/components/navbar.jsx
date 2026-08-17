@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import NavLink from "react-router-dom"
-
-export default function NavBar() {
-    const linkClass = ({isActive}) => `block py-2 ${isActive ? "text-amber-500": "text-slate-300"} ` 
-    return (
-        <header>
-            <NavLink to="/" className={linkClass} >Home</NavLink>
-        </header>
-    )
-}
-=======
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
@@ -154,4 +142,3 @@ export default function NavBar() {
 		</header>
 	);
 }
->>>>>>> a0a8e0c (- refactor: updated the entire frontend to use the jsx instead of the tsx)

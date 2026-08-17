@@ -14,8 +14,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.101.4
         version: 5.101.4(react@19.2.8)
-<<<<<<< HEAD
-=======
       i18next:
         specifier: ^26.3.6
         version: 26.3.6
@@ -25,7 +23,6 @@ importers:
       motion:
         specifier: ^13.1.0
         version: 13.1.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
->>>>>>> a0a8e0c (- refactor: updated the entire frontend to use the jsx instead of the tsx)
       react:
         specifier: ^19.2.8
         version: 19.2.8

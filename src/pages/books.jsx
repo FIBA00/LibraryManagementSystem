@@ -1,6 +1,9 @@
+
+// internal imports 
 import SearchSection from "../components/search.jsx";
+import BookCard from "../features/books/components/booksCard.jsx";
+
 import { books } from "../data/mock_data.js";
-import BookCard from "../../typs/src/features/books/components/booksCard.jsx";
 
 export default function Books() {
 	return (

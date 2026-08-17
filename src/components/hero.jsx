@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-
-export default function Hero() {
-    return (
-        <div>
-            <h1>Read or manage </h1>
-        </div>
-    )
-}
-=======
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "./button.jsx";
@@ -49,4 +39,3 @@ export default function Hero() {
 		</section>
 	);
 }
->>>>>>> a0a8e0c (- refactor: updated the entire frontend to use the jsx instead of the tsx)
