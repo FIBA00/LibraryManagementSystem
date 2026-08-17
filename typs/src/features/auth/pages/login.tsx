@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 // internal import
 import { useLogin } from "../hooks/useAuth";
 import { Input } from "../../../components/input.tsx";
-import { Button } from "../../../components/button.tsx";
+// import { Button } from "../../../components/button.tsx";
 
 export function Login() {
 	const nav = useNavigate();
@@ -14,6 +14,7 @@ export function Login() {
 
 	function handleSubmit(e: React.FormEvent) {
 		e.preventDefault();
+		console.log("Requesting login: ", email, password)
 		login.mutate({ email, password }, { onSuccess: () => nav("/reader") });
 	}
 
@@ -36,9 +37,16 @@ export function Login() {
 			{login.isError && (
 				<p className="text-sm text-red-600">{login.error.message}</p>
 			)}
-			<Button className="w-full" disabled={login.isPending}>
+			{/*<Button className="w-full" disabled={login.isPending}>
 				{login.isPending ? "Signing in..." : "Sign in"}
-			</Button>
+			</Button>*/}
+			<Button
+  type="button"
+  className="w-w"
+  onClick={() => alert("clicked")}
+>
+  Sign in
+</Button>
 		</form>
 	);
 }

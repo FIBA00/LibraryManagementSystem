@@ -3,7 +3,7 @@ import { Logo } from "../../../components/logo.tsx";
 import { Button } from "../../../components/button.tsx";
 import { Input } from "../../../components/input.tsx";
 
-export function Auth({ register = false }: { register?: boolean }) {
+export function Signup({ register = false }: { register?: boolean }) {
 	const nav = useNavigate();
 	return (
 		<div className="min-h-screen bg-slate-50">

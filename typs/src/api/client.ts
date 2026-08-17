@@ -5,6 +5,7 @@ const API_URL = (
 ).replace(/\/$/, "");
 
 export async function request<T>(path: string, options?: RequestInit): Promise<T> {
+	console.log("Requesting",path)
 	const token = localStorage.getItem("accessToken");
 	const response = await fetch(`${API_URL}${path}`, {
 		...options,

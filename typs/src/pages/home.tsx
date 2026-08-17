@@ -102,7 +102,7 @@ export function Home() {
 								className="rounded-2xl border p-6"
 								key={t as string}>
 								<div className="grid size-11 place-items-center rounded-xl bg-amber-50 text-amber-600">
-									<I as any />
+									<I />
 								</div>
 								<h3 className="mt-5 text-lg font-bold">
 									{t as string}
