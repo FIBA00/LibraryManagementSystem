@@ -4,29 +4,29 @@ import toast from "react-hot-toast";
 
 import Input from "../../../components/input.jsx";
 import Button from "../../../components/button.jsx";
-import { useLogin } from "../hooks/auth.hooks.js";
+import { useLogin } from "../hooks/useAuth.js";
 
 function LoginPage() {
-    const nav = useNavigate();
-    const login = useLogin();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const nav = useNavigate();
+  const login = useLogin();
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
 
-    function handleLoginSubmit(e) {
-        e.preventDefault();
-        login.mutate(
-            { email, password },
-            {
-                onSuccess: function () {
-                    toast.success("Welcome back!");
-                    nav("/reader");
-                },
-                onError: function (err) {
-                    toast.error(err.message || "Login failed");
-                },
-            },
-        );
-    }
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    login.mutate(
+      { email, password },
+      {
+        onSuccess: function (data) {
+          toast.success("Welcome back!");
+          nav(data.user.role === "owner" ? "/owner" : "/reader");
+        },
+        onError: function (err) {
+          toast.error(err.message || "Login failed");
+        },
+      },
+    );
+  }
 
 
   return (

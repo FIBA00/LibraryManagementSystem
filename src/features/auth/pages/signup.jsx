@@ -4,7 +4,7 @@ import toast from "react-hot-toast"
 
 import Input from "../../../components/input.jsx";
 import Button from "../../../components/button.jsx";
-import { useSignup } from "../hooks/auth.hooks.js";
+import { useSignup } from "../hooks/useAuth.js";
 
 function SignupPage() {
 	const nav = useNavigate();
@@ -19,9 +19,9 @@ function SignupPage() {
 		signup.mutate(
 			{ username, email, password, confirmPassword },
 			{
-				onSuccess: function () {
+				onSuccess: function (data) {
 					toast.success("Welcome back");
-					nav("/reader");
+					nav(data.user.role === "owner" ? "/owner": "/reader");
 				},
 				onError: function (err) {
 					toast.error(err.message || "Login failed")

@@ -13,3 +13,7 @@ export async function signupUser(payload) {
         body: JSON.stringify(payload)
     })
 }
+
+export async function getCurrentUser() {
+    return request("/user/profile")
+}

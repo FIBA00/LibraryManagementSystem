@@ -1,11 +1,21 @@
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 // internal imports
 import Logo from "../../../components/logo.jsx";
-import { Book, HomeIcon, LogOut, Menu } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import {
+	Bell,
+	Book,
+	ChevronDown,
+	HomeIcon,
+	Icon,
+	LogOut,
+	Menu,
+	ShieldCheck,
+	X,
+} from "lucide-react";
+
+import { cn } from "../../../lib/utils.js";
 
 const NavLinks = [
 	{ key: "home", to: "/", label: "Home" },
@@ -17,109 +27,130 @@ const NavLinks = [
 ];
 
 export default function ProfileLayout() {
-	const { t } = useTranslation();
-	const [scrolled, setScrolled] = useState(false);
-	const [sidebarOpen, setSidebarOpen] = useState(false);
-
-	useEffect(() => {
-		const onScroll = () => setScrolled(window.scrollY > 20);
-		window.addEventListener("scroll", onScroll, { passive: true });
-		return () => window.removeEventListener("scroll", onScroll);
-	}, []);
+	const [sideBarOpen, setSideBarOpen] = useState(false);
 
 	return (
 		<div className="min-h-screen">
 			<aside
-				className={`fixed top-15 mt-4 left-0 hidden w-64 border-r p-5 lg:block border-r-amber-300 border-2 ${scrolled ? "shadow-card" : ""}} `}>
+				className={cn(
+					"fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-slate-600 transition-transform lg:translate-x-0",
+					sideBarOpen ? "translate-x-0" : "-translate-x-full",
+				)}>
 				<Logo />
-				<div className="m-4 p-4 space-y-2">
-					<Link
-						to="/home"
-						className="bottom-5 left-5 flex items-center gap-3 ">
-						<HomeIcon size={18} />
-						home
-					</Link>
+				<div className="flex h-18 items-center justify-between border-b border-slate-600 px-6">
+					<div className="flex items-center gap-3">
+						<Link
+							to="/home"
+							className="bottom-5 left-5 flex items-center gap-3 ">
+							<HomeIcon size={18} />
+							home
+						</Link>
 
-					<Link
-						to="/books"
-						className="bottom-5 left-5 flex items-center gap-3 text-sm font-semibold text-slate-500">
-						<Book size={18} />
-						Books
-					</Link>
+						<Link
+							to="/books"
+							className="bottom-5 left-5 flex items-center gap-3 text-sm font-semibold text-slate-500">
+							<Book size={18} />
+							Books
+						</Link>
 
-					<Link
-						to="/"
-						className="bottom-5 left-5 flex items-center gap-3 text-sm font-semibold text-slate-500">
-						<LogOut size={18} />
-						Exit
-					</Link>
+						<Link
+							to="/"
+							className="bottom-5 left-5 flex items-center gap-3 text-sm font-semibold text-slate-500">
+							<LogOut size={18} />
+							Logout
+						</Link>
+					</div>
+					<button
+						className="lg:hidden"
+						onClick={() => setSideBarOpen(false)}>
+						<X size={20} />
+					</button>
 				</div>
-
-				<AnimatePresence>
-					{sidebarOpen && (
-						<motion.div
-							initial={{ height: 0, opacity: 0 }}
-							animate={{ height: "auto", opacity: 1 }}
-							exit={{ height: 0, opacity: 0 }}
-							transition={{ duration: 0.2 }}
-							className="md:hidden border-t border-orange-edge/25 bg-c-card overflow-hidden">
-							<div className="px-6 py-4 flex flex-col gap-4">
-								{NavLinks.map(({ key, to, label }) => (
-									<NavLink
-										key={key}
-										to={to}
-										onClick={() => setSidebarOpen(false)}
-										className="text-base font-medium text-parchment/80 py-1">
-										{t(`nav.${key}`, label)}
-									</NavLink>
-								))}
-
+				<nav className="flex-1 space-y-7 overflow-y-auto px-4 py-6">
+					<div>
+						{NavLinks.map(function handleItems({ key, to, label }) {
+							return (
 								<NavLink
-									to="/login"
-									onClick={() => setSidebarOpen(false)}
-									className="btn-orange text-center text-sm mt-1">
-									{t("nav.login")}
+									key={key}
+									to={to}
+									end={to === "/admin"}
+									onClick={() => setSideBarOpen(false)}
+									className={({ isActive }) =>
+										cn(
+											"mb-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
+											isActive
+												? "bg-c-card text-white shadow-sm"
+												: "text-slate-600 hover:bg-slate-100 hover:text-slate-900",
+										)
+									}>
+									{/* <Icon size={18} /> */}
 								</NavLink>
+							);
+						})}
+					</div>
+				</nav>
+				<div className="m-4 rounded-2xl bg-slate-50 p-4">
+					<div className="mb-3 flex items-center gap-2 text-xs font-bold text-slate-700">
+						<ShieldCheck size={15} /> Platform Admin
+					</div>
+					<div className="flex items-center gap-3">
+						<div className="grid size-9 place-items-center rounded-full bg-slate-200 text-xs font-bold">
+							FA
+						</div>
+						<div className="min-w-0">
+							<div className="truncate text-sm font-semibold">
+								Admin account
 							</div>
-						</motion.div>
-					)}
-				</AnimatePresence>
+							<div className="truncate text-xs text-slate-400">
+								System administrator
+							</div>
+						</div>
+						<ChevronDown
+							className="ml-auto text-slate-400"
+							size={15}
+						/>
+					</div>
+				</div>
 			</aside>
 
-			<div className="lg:pl-64">
-				<header className="flex h-15 p-4 items-center bg-c-bg/90 backdrop-blur transition-shadow duration-200 ">
-					{/* mobile controls */}
-					<div className="flex items-center gap-3">
-						<button
-							onClick={() => setSidebarOpen((o) => !o)}
-							className="flex flex-col gap-1.5 p-1"
-							aria-label="Toggle sidebar"
-							aria-expanded={sidebarOpen}>
-							<span
-								className={`block w-5 h-0.5 bg-ink rounded transition-transform duration-200 ${
-									sidebarOpen ? "rotate-45 translate-y-2" : ""
-								}`}
-							/>
-							<span
-								className={`block w-5 h-0.5 bg-ink rounded transition-opacity duration-200 ${
-									sidebarOpen ? "opacity-0" : ""
-								}`}
-							/>
-							<span
-								className={`block w-5 h-0.5 bg-ink rounded transition-transform duration-200 ${
-									sidebarOpen
-										? "-rotate-45 -translate-y-2"
-										: ""
-								}`}
-							/>
+			{sideBarOpen && (
+				<div
+					className="fixed inset-0 z-30 bg-c-bg/120 lg:hidden"
+					onClick={() => setSideBarOpen(false)}
+				/>
+			)}
+			<div className="lg:pl-72">
+				<header className="sticky top-0 z-20 flex h-18 items-center justify-between border-b border-slate-900/80 bg-c-bg/90 px-4 backdrop-blur-2xl lg:px-8">
+					<button
+						className="rounded p-2 hover:bg-slate-100 lg:hidden"
+						onClick={() => setSideBarOpen(true)}>
+						<Menu />
+					</button>
+					<div className="hidden text-sm text-slate-500 lg:block">
+						Platform /
+						<span className="font-semibold text-slate-800">
+							Administration
+						</span>
+					</div>
+
+					<div className="ml-auto flex items-center gap-2">
+						<button className="relative rounded-xl p-2.5 text-slate-500 hover:bg-slate-100">
+							<Bell size={19} />
+							<span className="absolute right-2 top-2 size-1.5 rounded-full bg-rose-500" />
 						</button>
+						<div className="ml-2 hidden h-7 w-px bg-slate-200 sm:block" />
+
+						<div className="ml-2 grid size-9 place-items-center rounded-full text-xs font-bold ">
+							FA
+						</div>
 					</div>
 				</header>
-				<div className="p-5">
-					<main>
-						<Outlet />
-					</main>
-				</div>
+			</div>
+
+			<div className="p-4 sm:p-6 lg:p-8">
+				<main>
+					<Outlet />
+				</main>
 			</div>
 		</div>
 	);

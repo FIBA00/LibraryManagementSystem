@@ -1,9 +1,12 @@
 import { BookOpen, Clock3, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
-import { books } from "../../../data/mock_data.js";
-import BookCard from "../../books/components/booksCard.jsx";
 
 // internal imports
+
+import { books } from "../../../data/mock_data.js";
+
+import BookCard from "../../books/components/booksCard.jsx";
+
 export default function ReaderProfilePage() {
 	const tabs = [
 		[BookOpen, "Borrowed", "4"],

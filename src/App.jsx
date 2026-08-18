@@ -22,6 +22,8 @@ import LibraryOwnerProfilePage from "./features/auth/pages/owner.jsx";
 import LibraryOwnerDashboardPage from "./features/libraries/pages/ownerDashboard.jsx";
 import { AdminLayout } from "./features/admin/layout/admin.layout.js";
 import AdminDashboardPage from "./features/admin/pages/adminDashboard.jsx";
+import ProtectedRoute from "./components/protectedRoute.jsx";
+import UnauthorizedPage from "./pages/unauthorized.jsx";
 
 export default function App() {
 	return (
@@ -41,15 +43,26 @@ export default function App() {
 					<Route path="/register" element={<SignupPage />} />
 				</Route>
 
-				{/* Profile pages */}
-				<Route element={<ProfileLayout />}>
-					<Route path="/reader" element={<ReaderProfilePage />} />
-					<Route
-						path="/owner"
-						element={<LibraryOwnerProfilePage />}
-					/>
+				{/* Reader routes */}
+				<Route element={<ProtectedRoute />}>
+					<Route element={<ProfileLayout />}>
+						<Route path="/reader" element={<ReaderProfilePage />} />
+					</Route>
 				</Route>
 
+
+				{/* Owner routes */}
+				<Route element={<ProtectedRoute />}>
+					<Route element={<ProfileLayout />}>
+						<Route
+							path="/owner"
+							element={<LibraryOwnerProfilePage />}
+						/>
+					</Route>
+				</Route>
+				<Route path="/unauthorized" element={<UnauthorizedPage />}>
+					
+				</Route>
 				{/* dashboards */}
 				<Route
 					path="/dashboard"
