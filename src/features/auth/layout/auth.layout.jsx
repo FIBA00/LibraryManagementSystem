@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Logo from "../../../components/logo.jsx";
 
-function AuthLayout() {
+export default function AuthLayout() {
 	return (
 		<div className="min-h-screen">
 			<div className="mx-auto flex min-h-screen max-w-7xl">
@@ -28,5 +28,3 @@ function AuthLayout() {
 		</div>
 	);
 }
-
-export default AuthLayout;

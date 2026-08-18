@@ -51,7 +51,7 @@ export default function NavBar() {
 
 	return (
 		<header
-			className={`sticky top-0 inset-x-0 z-40 px-2 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${
+			className={`sticky top-0 inset-x-0 z-40 px-2 h-15 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${
 				scrolled ? "shadow-card" : ""
 			}`}>
 			<div className="max-w-6xl mx-auto px-2">

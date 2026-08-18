@@ -32,7 +32,7 @@ export default function App() {
 				<Route path="/register" element={<Signup />} />
 
 				<Route path="/reader" element={<Reader />} />
-				{/*
+				
 
 				<Route
 					path="/reader/borrowings"
@@ -95,7 +95,7 @@ export default function App() {
 						</div>
 					}
 				/>
-				<Route path="*" element={<Navigate to="/" replace />} /> */}
+				<Route path="*" element={<Navigate to="/" replace />} /> 
 			</Routes>
 			<Footer />
 		</>
