@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
 import { NavLink, Link } from "react-router-dom";
 import { BookOpen } from "lucide-react";
+import ThemeToggle from "./theme.jsx";
 
 const NavLinks = [
 	{ key: "home", to: "/", label: "Home" },
 	{ key: "books", to: "/books", label: "Books" },
 	{ key: "libraries", to: "/libraries", label: "Find Libraries" },
-	{ key: "owners", to: "/owners", label: "For Libraries" },
+	{ key: "owners", to: "/owner", label: "For Libraries" },
 	{ key: "about", to: "/about", label: "About" },
 	{ key: "contactus", to: "/contactus", label: "Contact-us" },
 ];
@@ -78,6 +79,7 @@ export default function NavBar() {
 					{/* desktop right side */}
 					<div className="hidden md:flex items-center gap-3">
 						<LanguageSwitcher />
+						<ThemeToggle />
 
 						{/* getting started */}
 						<NavLink to="/login" className="btn-orange">

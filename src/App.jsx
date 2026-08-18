@@ -50,22 +50,23 @@ export default function App() {
 				</Route>
 
 				{/* Reader routes */}
-				{/* <Route element={<ProtectedRoute />}> */}
-				<Route element={<ProfileLayout />}>
-					<Route path="/reader" element={<ReaderProfilePage />} />
+				<Route element={<ProtectedRoute />}>
+					<Route element={<ProfileLayout />}>
+						<Route path="/reader" element={<ReaderProfilePage />} />
+					</Route>
 				</Route>
-				{/* </Route> */}
 
 
 				{/* Owner routes */}
-				{/* <Route element={<ProtectedRoute />}> */}
-				<Route element={<ProfileLayout />}>
-					<Route
-						path="/owner"
-						element={<LibraryOwnerProfilePage />}
-					/>
+				<Route element={<ProtectedRoute />}>
+					<Route element={<ProfileLayout />}>
+						<Route
+							path="/owner"
+							element={<LibraryOwnerProfilePage />}
+						/>
+					</Route>
 				</Route>
-				{/* </Route> */}
+
 				<Route path="/unauthorized" element={<UnauthorizedPage />}>
 
 				</Route>
@@ -81,7 +82,7 @@ export default function App() {
 				</Route>
 			</Routes>
 			{!isProfileRoute &&
-			<Footer />
+				<Footer />
 
 
 			}
