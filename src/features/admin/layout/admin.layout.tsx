@@ -22,29 +22,29 @@ const sections = [
 	{
 		label: "Workspace",
 		items: [
-			["/admin", "Overview", LayoutDashboard],
-			["/admin/libraries", "Libraries", Building2],
+			[ "/admin", "Overview", LayoutDashboard ],
+			[ "/admin/libraries", "Libraries", Building2 ],
 		],
 	},
 	{
 		label: "Circulation",
 		items: [
-			["/admin/books", "Books & catalog", BookOpen],
-			["/admin/borrowings", "Borrowings", ClipboardList],
-			["/admin/members", "Members", Users],
+			[ "/admin/books", "Books & catalog", BookOpen ],
+			[ "/admin/borrowings", "Borrowings", ClipboardList ],
+			[ "/admin/members", "Members", Users ],
 		],
 	},
-	{ label: "Insights", items: [["/admin/reports", "Reports", FileBarChart]] },
-	{ label: "System", items: [["/admin/settings", "Settings", Settings]] },
-]
-export function AdminLayout() {
-	const [sideBarOpen, setSideBarOpen] = useState(false);
+	{ label: "Insights", items: [ [ "/admin/reports", "Reports", FileBarChart ] ] },
+	{ label: "System", items: [ [ "/admin/settings", "Settings", Settings ] ] },
+];
+export default function AdminLayout() {
+	const [ sideBarOpen, setSideBarOpen ] = useState(false);
 
 	return (
 		<div className="min-h-screen">
 			<aside
 				className={cn(
-					"fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-slate-600 transition-transform lg:translate-x-0",
+					"fixed inset-y-0 left-0 z-40 flex w-72 flex-col bg-c-card border-r border-slate-600 transition-transform lg:translate-x-0",
 					sideBarOpen ? "translate-x-0" : "-translate-x-full",
 				)}>
 				<div className="flex h-18 items-center justify-between border-b border-slate-600 px-6">
@@ -71,26 +71,20 @@ export function AdminLayout() {
 				</div>
 
 				<nav className="flex-1 space-y-7 overflow-y-auto px-4 py-6">
-					{sections.map(function handleSections([label, items]) {
+					{sections.map(function handleSections({ label, items }) {
 						return (
 							<div key={label}>
-								<div className="px-3 pb-2 text-sm font-bold uppercase tracking-tight ">
+								<div className="px-3 pb-2 text-sm font-bold uppercase tracking-tight">
 									{label}
 								</div>
 								<div>
-									{items.map(function handleItems([
-										to,
-										name,
-										Icon,
-									]) {
+									{items.map(function handleItems([ to, name, Icon ]) {
 										return (
 											<NavLink
 												key={to}
 												to={to}
 												end={to === "/admin"}
-												onClick={() =>
-													setSideBarOpen(false)
-												}
+												onClick={() => setSideBarOpen(false)}
 												className={({ isActive }) =>
 													cn(
 														"mb-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
@@ -100,6 +94,7 @@ export function AdminLayout() {
 													)
 												}>
 												<Icon size={18} />
+												{name}
 											</NavLink>
 										);
 									})}

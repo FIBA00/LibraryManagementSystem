@@ -10,20 +10,18 @@ import { formatDate } from "../../../lib/utils.js";
 import { StatusBadge } from "../components/statusBadge.jsx";
 
 
-const libraryStatuses = ["all", "pending", "approved", "suspended", "rejected"];
+const libraryStatuses = [ "all", "pending", "approved", "suspended", "rejected" ];
 
 export default function AdminManageLibraries() {
-	const [libraryData] = useState(libraries);
-	const [searchQuery, setSearchQuery] = useState("");
-	const [searchParams, setSearchParams] = useSearchParams();
-	const libraryStatus = searchParams.get("libraryStatus");
+	const [ libraryData ] = useState(libraries);
+	const [ searchQuery, setSearchQuery ] = useState("");
+	const [ searchParams, setSearchParams ] = useSearchParams();
+	const libraryStatus = searchParams.get("libraryStatus") ?? "all";
 	const filteredLibraryByStatus = useMemo(
-		() =>
-            libraryData.filter(filterByStatus(libraryData))
-            [
-				(libraryData, libraryStatus, searchQuery)
-			],
+		() => libraryData.filter(filterByStatus),
+		[ libraryData, libraryStatus, searchQuery ],
 	);
+
 	function filterByStatus(library) {
 		return (
 			(libraryStatus === "all" || library.status === libraryStatus) &&
@@ -71,9 +69,7 @@ export default function AdminManageLibraries() {
 						{libraryStatuses.map((s) => (
 							<button
 								key={s}
-								onClick={() =>
-									setSearchParams(s === "all" ? {} : { s })
-								}
+								onClick={() => setSearchParams(s === "all" ? {} : { libraryStatus: s })}
 								className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-bold capitalize ${libraryStatus === s ? "bg-slate-900 text-white" : "text-slate-500 hover:bg-slate-100"}`}>
 								{s}
 							</button>
