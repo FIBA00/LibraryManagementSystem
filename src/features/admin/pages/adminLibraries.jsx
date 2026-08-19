@@ -199,16 +199,17 @@ export default function AdminLibraryDetailsPage() {
                         </div>
 
                     </div>
-                    <div className="mt-2 rounded-xl bg-surface-raised p-4 text-sm">
+                    {/* TODO: get the new status from the button that is clicked and show the new status to be switched to. */}
+                    {/* <div className="mt-2 rounded-xl bg-surface-raised p-4 text-sm">
                         <div className="font-bold">Change the state to : </div>
                         <div className="mt-2 text-xs  text-text-muted">
                             New status:{" "}
                             <span className="text-text capitalize bg-success rounded-2xl px-2 py-0.5 ">
-                                approved
+                                {library.status}
                             </span>
                         </div>
 
-                    </div>
+                    </div> */}
 
                 </div>
 

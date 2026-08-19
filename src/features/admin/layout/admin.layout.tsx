@@ -10,6 +10,7 @@ import {
 	Menu,
 	Settings,
 	ShieldCheck,
+	User,
 	Users,
 	X,
 } from "lucide-react";
@@ -26,6 +27,8 @@ const sections = [
 		items: [
 			[ "/admin/overview", "Overview", LayoutDashboard ],
 			[ "/admin/libraries", "Libraries", Building2 ],
+			[ "/admin/users", "Users", Users ],
+
 
 		],
 	},
@@ -34,7 +37,7 @@ const sections = [
 		items: [
 			[ "/admin/books", "Books & catalog", BookOpen ],
 			[ "/admin/borrowings", "Borrowings", ClipboardList ],
-			[ "/admin/members", "Members", Users ],
+			[ "/admin/libraries/members", "Members", Users ],
 		],
 	},
 	{ label: "Insights", items: [ [ "/admin/reports", "Reports", FileBarChart ] ] },

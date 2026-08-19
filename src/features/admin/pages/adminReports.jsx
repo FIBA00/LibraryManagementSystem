@@ -1,8 +1,11 @@
+import { Generic } from "../components/generic.jsx";
 
 export default function AdminReportsPage() {
     return(
         <div>
-            Reports
+            <Generic
+            type="report"
+            />
         </div>
     )
 }

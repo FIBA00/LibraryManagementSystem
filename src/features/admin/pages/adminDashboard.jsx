@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import { Building2, ChevronRight, Search, } from "lucide-react";
+import { ArrowLeft, Building2, ChevronRight, Search, } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 
 // internal imports
@@ -31,7 +31,14 @@ export default function AdminManageLibraries() {
 		);
 	}
 	return (
-		<div className="mx-auto items-center justify-center max-w-7xl space-y-12">
+		<div className="mx-auto items-center justify-center max-w-7xl space-y-6">
+			       <Link
+                to="/admin"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted hover:text-accent">
+                <ArrowLeft size={18} />
+                Back to Dashboard
+            </Link>
+
 			<div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 				<div>
 					<div className="text-sm font-semibold text-text-muted">Workspace</div>
