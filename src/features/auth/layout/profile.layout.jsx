@@ -41,12 +41,12 @@ export default function ProfileLayout() {
                     sideBarOpen ? "translate-x-0" : "-translate-x-full",
                 )}>
                 <div className="flex justify-between">
-                <Logo />
-                <button className="lg:hidden text-ink text-2xl" onClick={() => setSideBarOpen(false)}>
+                    <Logo />
+                    <button className="lg:hidden text-ink text-2xl" onClick={() => setSideBarOpen(false)}>
                         <X size={20} />
                     </button>
                 </div>
-             
+
                 <div className="flex h-18 items-center justify-between border-b border-slate-600 px-6">
                     <div className="flex items-center gap-3">
                         <Link to="/" className="flex items-center gap-2 text-sm font-semibold text-slate-500">
@@ -64,7 +64,7 @@ export default function ProfileLayout() {
                             Logout
                         </button>
                     </div>
-                    
+
                 </div>
 
                 <nav className="flex-1 space-y-1 overflow-y-auto px-4 py-6">

@@ -4,5 +4,5 @@
 export default function LibraryOwnerDashboardPage() {
     return (
         <div>Hi</div>
-    )
+    );
 }

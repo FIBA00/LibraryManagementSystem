@@ -7,5 +7,5 @@ export default function UnauthorizedPage() {
             <h1 className="text-red-600 text-2xl text-center">Unauthorized </h1>
             <Link to="/" className="text-2xl">Go Home Please</Link>
         </div>
-    )
+    );
 }

@@ -9,9 +9,9 @@ import BookCard from "../../books/components/booksCard.jsx";
 
 export default function ReaderProfilePage() {
 	const tabs = [
-		[BookOpen, "Borrowed", "4"],
-		[Clock3, "Due Soon", "2"],
-		[Heart, "Saved Books", "12"],
+		[ BookOpen, "Borrowed", "4" ],
+		[ Clock3, "Due Soon", "2" ],
+		[ Heart, "Saved Books", "12" ],
 	];
 
 	return (
@@ -21,7 +21,7 @@ export default function ReaderProfilePage() {
 
 			{/* reader tabs */}
 			<div className="flex mt-8 gap-4">
-				{tabs.map(function tabHandler([I, tab, amount]) {
+				{tabs.map(function tabHandler([ I, tab, amount ]) {
 					return (
 						<div
 							key={tab}

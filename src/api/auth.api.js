@@ -15,5 +15,5 @@ export async function signupUser(payload) {
 }
 
 export async function getCurrentUser() {
-    return request("/user/profile")
+    return request("/user/me")
 }

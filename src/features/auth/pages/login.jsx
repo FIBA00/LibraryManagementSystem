@@ -19,7 +19,7 @@ function LoginPage() {
       {
         onSuccess: function (data) {
           toast.success("Welcome back!");
-          nav(data.user.role === "owner" ? "/owner" : "/reader");
+          nav(data.data.role === "owner" ? "/owner" : "/reader");
         },
         onError: function (err) {
           toast.error(err.message || "Login failed");

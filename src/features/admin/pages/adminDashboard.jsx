@@ -42,7 +42,7 @@ export default function AdminManageLibraries() {
 					<Building2 size={16} /> Export
 				</button>
 			</div>
-	
+
 			<div className="rounded-2xl border border-border bg-surface-raised shadow-card">
 				<div className="flex flex-col gap-3 border-b border-border p-4 lg:flex-row">
 					<div className="relative flex-1">
@@ -59,15 +59,14 @@ export default function AdminManageLibraries() {
 							<button
 								key={s}
 								onClick={() => setSearchParams(s === "all" ? {} : { libraryStatus: s })}
-								className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-bold capitalize ${
-									libraryStatus === s ? "bg-accent text-ink" : "text-text-muted hover:bg-surface-hover"
-								}`}>
+								className={`whitespace-nowrap rounded-lg px-3 py-2 text-xs font-bold capitalize ${libraryStatus === s ? "bg-accent text-ink" : "text-text-muted hover:bg-surface-hover"
+									}`}>
 								{s}
 							</button>
 						))}
 					</div>
 				</div>
-	
+
 				<table className="w-full min-w-196 text-left">
 					<thead>
 						<tr className="border-b border-border text-[11px] uppercase tracking-wider text-text-muted">
@@ -106,7 +105,7 @@ export default function AdminManageLibraries() {
 						))}
 					</tbody>
 				</table>
-	
+
 				{filteredLibraryByStatus.length === 0 && (
 					<div className="p-12 text-center text-sm text-text-muted">No libraries match your filters.</div>
 				)}

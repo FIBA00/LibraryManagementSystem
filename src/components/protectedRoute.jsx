@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useCurrentUser } from "../features/auth/hooks/useAuth.js";
 
-export default function ProtectedRoute() {
+export default function ProtectedRoute({ allowedRoles }) {
     const { data, isLoading, isError } = useCurrentUser();
 
     if (isLoading) {
@@ -15,8 +15,8 @@ export default function ProtectedRoute() {
         return <Navigate to="/login" replace />;
     }
 
-    if (allowedRoles && !allowedRoles.includes(data.user.roles)) {
-        return <Navigate to="/unauthorized" replace />
+    if (allowedRoles && !allowedRoles.includes(data.data.role)) {
+        return <Navigate to="/unauthorized" replace />;
     }
 
     return <Outlet />;

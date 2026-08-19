@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from "motion/react";
 import { NavLink, Link } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 import ThemeToggle from "./theme.jsx";
+import { useCurrentUser } from "../features/auth/hooks/useAuth.js";
+
+const dashboardPathByRole = {
+	admin: "/admin",
+	owner: "/owner",
+	reader: "/reader",
+};
 
 const NavLinks = [
 	{ key: "home", to: "/", label: "Home" },
@@ -31,8 +38,10 @@ function LanguageSwitcher() {
 
 export default function NavBar() {
 	const { t } = useTranslation();
-	const [scrolled, setScrolled] = useState(false);
-	const [menuOpen, setMenuOpen] = useState(false);
+	const [ scrolled, setScrolled ] = useState(false);
+	const [ menuOpen, setMenuOpen ] = useState(false);
+	const { data: response, isLoading } = useCurrentUser();
+	const user = response?.data;
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 20);
@@ -42,19 +51,18 @@ export default function NavBar() {
 
 	// active link uses the orange accent to match the theme
 	const linkClass = ({ isActive }) =>
-		`text-sm font-medium transition-colors ${
-			isActive ? "text-c-orange" : "text-parchment/80 hover:text-c-orange"
+		`text-sm font-medium transition-colors ${isActive ? "text-c-orange" : "text-parchment/80 hover:text-c-orange"
 		}`;
 
 	// TODO: Implement is logged in check
 	// eslint-disable-next-line
-	const isLoggedIn = false;
+	const dashboardPath = user ? (dashboardPathByRole[ user.role ] ?? "/reader") : "/login";
+	const dashboardLabel = isLoading ? "..." : user ? user.username : t("nav.login");
 
 	return (
 		<header
-			className={`sticky top-0 inset-x-0 z-40 px-2 h-15 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${
-				scrolled ? "shadow-card" : ""
-			}`}>
+			className={`sticky top-0 inset-x-0 z-40 px-2 h-15 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${scrolled ? "shadow-card" : ""
+				}`}>
 			<div className="max-w-6xl mx-auto px-2">
 				<div className="flex items-center justify-between h-16">
 					{/* logo */}
@@ -82,33 +90,31 @@ export default function NavBar() {
 						<ThemeToggle />
 
 						{/* getting started */}
-						<NavLink to="/login" className="btn-orange">
-							{t("nav.login")}
+						<NavLink to={dashboardPath} className="btn-orange">
+							{dashboardLabel}
 						</NavLink>
 					</div>
 
 					{/* mobile controls */}
 					<div className="md:hidden flex items-center gap-3">
 						<LanguageSwitcher />
+
 						<button
 							onClick={() => setMenuOpen((o) => !o)}
 							className="flex flex-col gap-1.5 p-1"
 							aria-label="Toggle menu"
 							aria-expanded={menuOpen}>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${
-									menuOpen ? "rotate-45 translate-y-2" : ""
-								}`}
+								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""
+									}`}
 							/>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-opacity duration-200 ${
-									menuOpen ? "opacity-0" : ""
-								}`}
+								className={`block w-5 h-0.5 bg-parchment rounded transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""
+									}`}
 							/>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${
-									menuOpen ? "-rotate-45 -translate-y-2" : ""
-								}`}
+								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""
+									}`}
 							/>
 						</button>
 					</div>
@@ -124,7 +130,7 @@ export default function NavBar() {
 						transition={{ duration: 0.2 }}
 						className="md:hidden border-t border-orange-edge/25 bg-c-card overflow-hidden">
 
-						
+
 						<div className="px-6 py-4 flex flex-col gap-4">
 							{NavLinks.map(({ key, to, label }) => (
 								<NavLink
@@ -136,11 +142,10 @@ export default function NavBar() {
 								</NavLink>
 							))}
 
-							<NavLink
-								to="/login"
-								onClick={() => setMenuOpen(false)}
-								className="btn-orange text-center text-sm mt-1">
-								{t("nav.login")}
+
+
+							<NavLink to={dashboardPath} className="btn-orange text-center text-sm mt-1" onClick={() => setMenuOpen(false)}>
+								{dashboardLabel}
 							</NavLink>
 						</div>
 

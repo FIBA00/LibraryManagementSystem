@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast"
+import toast from "react-hot-toast";
 
 import Input from "../../../components/input.jsx";
 import Button from "../../../components/button.jsx";
@@ -9,10 +9,10 @@ import { useSignup } from "../hooks/useAuth.js";
 function SignupPage() {
 	const nav = useNavigate();
 	const signup = useSignup();
-	const [username, setUsername] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
+	const [ username, setUsername ] = useState("");
+	const [ email, setEmail ] = useState("");
+	const [ password, setPassword ] = useState("");
+	const [ confirmPassword, setConfirmPassword ] = useState("");
 
 	function handleSignupForm(e) {
 		e.preventDefault();
@@ -21,13 +21,13 @@ function SignupPage() {
 			{
 				onSuccess: function (data) {
 					toast.success("Welcome back");
-					nav(data.user.role === "owner" ? "/owner": "/reader");
+					nav(data.data.role === "owner" ? "/owner" : "/reader");
 				},
 				onError: function (err) {
-					toast.error(err.message || "Login failed")
+					toast.error(err.message || "Login failed");
 				}
 			},
-		
+
 		);
 	}
 

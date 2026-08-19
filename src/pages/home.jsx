@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // internal imports
 import { books } from "../data/mock_data.js";
-import Hero from "../components/hero.jsx"
+import Hero from "../components/hero.jsx";
 import Button from "../components/button.jsx";
 import SearchSection from "../components/search.jsx";
 
@@ -41,7 +41,7 @@ export default function Home() {
 
 				<section>
 					<div className="grid gap-5 md:grid-cols-3">
-						{explainers.map(([I, t, d]) => (
+						{explainers.map(([ I, t, d ]) => (
 							<div className="rounded-2xl border p-6" key={t}>
 								<div className="grid size-11 place-items-center rounded-xl bg-amber-50 text-amber-600">
 									<I />

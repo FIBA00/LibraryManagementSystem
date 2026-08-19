@@ -50,7 +50,7 @@ export default function App() {
 				</Route>
 
 				{/* Reader routes */}
-				<Route element={<ProtectedRoute />}>
+				<Route element={<ProtectedRoute allowedRoles={[ "reader" ]} />}>
 					<Route element={<ProfileLayout />}>
 						<Route path="/reader" element={<ReaderProfilePage />} />
 					</Route>
@@ -58,33 +58,35 @@ export default function App() {
 
 
 				{/* Owner routes */}
-				<Route element={<ProtectedRoute />}>
+				<Route element={<ProtectedRoute allowedRoles={[ "owner" ]} />}>
 					<Route element={<ProfileLayout />}>
 						<Route
 							path="/owner"
 							element={<LibraryOwnerProfilePage />}
 						/>
+						<Route
+							path="/dashboard"
+							element={<LibraryOwnerDashboardPage />}
+						/>
 					</Route>
 				</Route>
 
-				<Route path="/unauthorized" element={<UnauthorizedPage />}>
-
+				<Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}>
+					<Route element={<AdminLayout />}>
+						<Route path="/admin" element={<AdminDashboardPage />} />
+					</Route>
 				</Route>
-				{/* dashboards */}
-				<Route
-					path="/dashboard"
-					element={<LibraryOwnerDashboardPage />}
-				/>
+
+
+				<Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
 
 				{/* admin related */}
-				<Route element={<AdminLayout />}>
-					<Route path="/admin" element={<AdminDashboardPage />} />
-				</Route>
+
+
 			</Routes>
+
 			{!isProfileRoute &&
 				<Footer />
-
-
 			}
 		</div>
 	);
