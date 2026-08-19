@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AlertTriangle, ArrowRight, ArrowUpRight, BookOpen, Building2, Clock3, Users } from "lucide-react";
-// import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip } from "recharts";
+import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip } from "recharts";
 
 
 // internal imports
@@ -70,7 +70,69 @@ export default function AdminOverviewPage() {
                 />
             </div>
             <div className="grid gap-5 xl:grid-cols-2">
+                <section className="rounded-2xl border border-border bg-surface p-5 shadow-sm shadow-slate-200/30">
+                    <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-3">
+                            <span className="sparkle size-4" />
+                            <div>
 
+                            <h2 className="font-bold">Borrowing activity</h2>
+                            <p className="mt-1 text-xs text-text-muted">
+                                Books checked out over the last 7 days
+                            </p>
+                            </div>
+                        </div>
+                        <button className="rounded-lg border border-surface px-3 py-1.5 text-xs font-semibold text-text hover:bg-accent ">
+                            This week
+                        </button>
+                    </div>
+                    <div className="mt-5 h-64">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={activity}>
+                                <defs>
+                                    <linearGradient
+                                        id="fill"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1">
+                                        <stop
+                                            offset="0%"
+                                            stopColor="#0f172a"
+                                            stopOpacity={0.16}
+                                        />
+                                        <stop
+                                            offset="100%"
+                                            stopColor="#0f172a"
+                                            stopOpacity={0}
+                                        />
+                                    </linearGradient>
+                                </defs>
+                                <XAxis
+                                    dataKey="day"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tick={{ fontSize: 11, fill: "#94a3b8" }}
+                                />
+                                <Tooltip
+                                    cursor={{ stroke: "#cbd5e1" }}
+                                    contentStyle={{
+                                        borderRadius: 12,
+                                        border: "1px solid #e2e8f0",
+                                        fontSize: 12,
+                                    }}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="value"
+                                    stroke="#0f172a"
+                                    strokeWidth={2.5}
+                                    fill="url(#fill)"
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
+                </section>
 
                 <section className="rounded-2xl border max-w-7xl border-border-strong bg-surface p-5 shadow-sm shadow-accent-alt hex-bg">
                     <div className="flex items-center gap-3">

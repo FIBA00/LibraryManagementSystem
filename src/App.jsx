@@ -31,7 +31,7 @@ import AdminManageLibraries from "./features/admin/pages/adminDashboard.jsx";
 
 
 import AdminOverviewPage from "./features/admin/pages/adminOverview.jsx";
-import AdminManageUsers  from "./features/admin/pages/adminUsers.jsx";
+import AdminManageUsers from "./features/admin/pages/adminUsers.jsx";
 import AdminLibraryDetailsPage from "./features/admin/pages/adminLibraries.jsx";
 import AdminSettingsPage from "./features/admin/pages/adminSettings.jsx";
 import AdminReportsPage from "./features/admin/pages/adminReports.jsx";
@@ -82,19 +82,19 @@ export default function App() {
 					</Route>
 				</Route>
 
-				{/* <Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}> */}
-				<Route element={<AdminLayout />}>
-					<Route path="/admin/overview" element={<AdminOverviewPage />} />
-					<Route path="/admin/libraries" element={<AdminManageLibraries />} />
-					<Route path="/admin/users" element={<AdminManageUsers />} />
+				<Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}>
+					<Route element={<AdminLayout />}>
+						<Route path="/admin/" element={<AdminOverviewPage />} />
+						<Route path="/admin/libraries" element={<AdminManageLibraries />} />
+						<Route path="/admin/users" element={<AdminManageUsers />} />
 
-					<Route path="/admin/libraries/:id" element={<AdminLibraryDetailsPage />} />
-					<Route path="/admin/settings" element={<AdminSettingsPage />} />
-					<Route path="/admin/reports" element={<AdminReportsPage />} />
-					
+						<Route path="/admin/libraries/:id" element={<AdminLibraryDetailsPage />} />
+						<Route path="/admin/settings" element={<AdminSettingsPage />} />
+						<Route path="/admin/reports" element={<AdminReportsPage />} />
 
+
+					</Route>
 				</Route>
-				{/* </Route> */}
 
 
 				<Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
