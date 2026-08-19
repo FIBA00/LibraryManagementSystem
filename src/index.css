@@ -3,7 +3,8 @@
 
 @theme {
 	/* colors */
-	--color-c-bg: #13111c;
+	--color-bg: #121010;
+	--color-c-bg: #ffffff;
 	--color-c-card: #1c192b;
 	--color-c-pink: #d946ef;
 	--color-c-purple: #7e22ce;
@@ -13,7 +14,7 @@
 	--color-orange-edge: #ff8c00;
 	--color-orange-pale: #ffefd5;
 	--color-ink-muted: #a0a0a0;
-	--color-ink: #ffffff;
+	--color-ink: #f9eeee;
 	
 	/* fonts */
 	--font-display: "Space Grotesk", sans-serif;
@@ -25,7 +26,7 @@
 		0 0 0 4px rgba(255, 253, 245, 0.7), 0 0 0 5.5px rgba(255, 140, 0, 0.55);
 	--shadow-card: 0 2px 16px rgba(19, 17, 28, 0.28);
     /* --- NEW: semantic layer, this is what components use --- */
-    --color-surface: var(--color-c-bg);        /* page background */
+    --color-surface: var(--color-bg);        /* page background */
     --color-surface-raised: var(--color-c-card); /* cards, panels, sidebar */
     --color-surface-hover: #252139;              /* row hover, subtle lift */
     --color-border: rgba(255, 255, 255, 0.08);    /* replaces border-slate-* */
@@ -36,11 +37,14 @@
     --color-accent-alt: var(--color-c-purple);
     --color-danger: var(--color-c-red);
     --color-success: #22c55e;
+
+	
 }
 
 
 /* light theme override — same variable names, new values */
 [data-theme="light"] {
+	--color-c-bg: #121010;
     --color-surface: #fafaf9;
     --color-surface-raised: #ffffff;
     --color-surface-hover: #f1f1ef;
@@ -82,7 +86,7 @@
 		background-position:
 			0 0,
 			15px 15px;
-		opacity: 0.2;
+		opacity: 0.9f;
 	}
 	/* 2. The Hexagon Grid (Dark orange) */
 	.hex-bg {
@@ -153,7 +157,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.5em 1.2rem;
+		padding: 0.5em 1.0rem;
 		border-radius: 2rem;
 		margin: 0;
 		background: linear-gradient(135deg, var(--color-c-orange), #ffb347);

@@ -19,7 +19,7 @@ import { useState } from "react";
 // internal imports
 import ThemeToggle from "../../../components/theme.jsx";
 import { cn } from "../../../lib/utils.js";
-
+import { useCurrentUser } from "../../auth/hooks/useAuth.js";
 
 const sections = [
 	{
@@ -28,8 +28,6 @@ const sections = [
 			[ "/admin/overview", "Overview", LayoutDashboard ],
 			[ "/admin/libraries", "Libraries", Building2 ],
 			[ "/admin/users", "Users", Users ],
-
-
 		],
 	},
 	{
@@ -44,16 +42,25 @@ const sections = [
 	{ label: "System", items: [ [ "/admin/settings", "Settings", Settings ] ] },
 ];
 
-
 const NavLinks = [
 	{ key: "home", to: "/", label: "Home" },
 	{ key: "books", to: "/books", label: "Books" },
 	{ key: "libraries", to: "/libraries", label: "Find Libraries" },
 ];
 
+function getInitials(username) {
+	if (!username) return "..";
+	return username.slice(0, 2).toUpperCase();
+}
+
 export default function AdminLayout() {
 	const [ sideBarOpen, setSideBarOpen ] = useState(false);
 	const [ dropDownMenu, setDropDownMenu ] = useState(false);
+
+	const { data, isLoading } = useCurrentUser();
+	const user = data?.data;
+	const initials = getInitials(user?.username);
+
 	const linkClass = ({ isActive }) =>
 		`text-sm font-medium transition-colors ${isActive ? "text-accent" : "text-text/80 hover:text-c-orange"
 		}`;
@@ -76,7 +83,7 @@ export default function AdminLayout() {
 								Platform Admin
 							</div>
 							<div className="text-[10px] font-semibold uppercase tracking-tighter text-text-muted">
-								Adminstration
+								Administration
 							</div>
 						</div>
 					</div>
@@ -122,28 +129,54 @@ export default function AdminLayout() {
 					})}
 				</nav>
 
-				<div className="m-4 rounded-2xl border-2 border-border-strong p-4">
+				<div className="relative m-4 rounded-2xl border-2 border-border-strong p-4">
 					<div className="mb-3 flex items-center gap-2 text-xs font-bold text-text">
 						<ShieldCheck size={15} /> Platform Admin
 					</div>
 					<div className="flex items-center gap-3">
 						<div className="grid size-9 place-items-center rounded-full bg-success text-xs font-bold">
-							FA
+							{initials}
 						</div>
 						<div className="min-w-0">
 							<div className="truncate text-sm font-semibold">
-								Admin account
+								{isLoading ? "Loading..." : user?.username}
 							</div>
-							<div className="truncate text-xs text-text-muted">
-								System administrator
+							<div className="truncate text-xs text-text-muted capitalize">
+								{isLoading ? "" : user?.role}
 							</div>
 						</div>
 						<ChevronDown
-							className="ml-auto text-text-muted"
+							className="ml-auto cursor-pointer text-text-muted"
 							size={15}
-							onClick={() => setDropDownMenu(true)}
+							onClick={() => setDropDownMenu((prev) => !prev)}
 						/>
 					</div>
+
+					{dropDownMenu && user && (
+						<div className="absolute bottom-full left-0 mb-2 w-full rounded-xl border border-border-strong bg-surface p-4 shadow-lg">
+							<div className="mb-2 flex items-center gap-2 text-xs font-bold text-text">
+								<User size={14} /> Account
+							</div>
+							<dl className="space-y-1 text-xs text-text-muted">
+								<div className="flex justify-between gap-2">
+									<dt>Username</dt>
+									<dd className="truncate text-text">{user.username}</dd>
+								</div>
+								<div className="flex justify-between gap-2">
+									<dt>Email</dt>
+									<dd className="truncate text-text">{user.email}</dd>
+								</div>
+								<div className="flex justify-between gap-2">
+									<dt>Phone</dt>
+									<dd className="truncate text-text">{user.phone}</dd>
+								</div>
+								<div className="flex justify-between gap-2">
+									<dt>Role</dt>
+									<dd className="truncate text-text capitalize">{user.role}</dd>
+								</div>
+							</dl>
+						</div>
+					)}
 				</div>
 			</aside>
 
@@ -156,7 +189,7 @@ export default function AdminLayout() {
 			<div className="lg:pl-72">
 				<header className="sticky top-0 z-20 flex h-18 items-center justify-between border-b border-border-strong bg-surface/90 px-4 backdrop-blur-2xl lg:px-8">
 					<button
-						className="rounded p-2 hover:bg-slate-100 lg:hidden"
+						className="rounded p-2 hover:bg-surfce lg:hidden"
 						onClick={() => setSideBarOpen(true)}>
 						<Menu />
 					</button>
@@ -169,17 +202,16 @@ export default function AdminLayout() {
 						))}
 					</nav>
 
-
 					<div className="ml-auto flex items-center gap-2">
 						<ThemeToggle />
-						<button className="relative rounded-xl p-2.5 text-slate-500 hover:bg-slate-100">
+						<button className="relative rounded-xl p-2.5 text-text-muted hover:bg-surface-hover">
 							<Bell size={19} />
 							<span className="absolute right-2 top-2 size-1.5 rounded-full bg-rose-500" />
 						</button>
-						<div className="ml-2 hidden h-7 w-px bg-slate-200 sm:block" />
+						<div className="ml-2 hidden h-7 w-px bg-surface sm:block" />
 
 						<div className="ml-2 grid size-9 place-items-center rounded-full text-xs font-bold ">
-							FA
+							{initials}
 						</div>
 					</div>
 				</header>
@@ -187,7 +219,7 @@ export default function AdminLayout() {
 
 			<div className="p-4 sm:p-6 lg:p-8">
 				<main>
-					<Outlet />
+					<Outlet context={{ user }} />
 				</main>
 			</div>
 		</div>

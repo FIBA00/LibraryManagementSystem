@@ -52,7 +52,7 @@ export default function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/books" element={<Books />} />
 				<Route path="/libraries" element={<Libraries />} />
-				<Route path="/for-libraries" element={<ForLibraries />} />
+				<Route path="/forlibraries" element={<ForLibraries />} />
 
 				{/* Auth pages */}
 				<Route element={<AuthLayout />}>

@@ -1,41 +1,29 @@
-import { Link } from "react-router-dom";
-import { AlertTriangle, ArrowRight, ArrowUpRight, BookOpen, Building2, Clock3, Users } from "lucide-react";
-import { ResponsiveContainer, AreaChart, Area, XAxis, Tooltip } from "recharts";
-
+import { Link, useOutletContext } from "react-router-dom";
+import { AlertTriangle, ArrowRight, ArrowUpRight, Building2, BookOpen, Clock3, Users } from "lucide-react";
 
 // internal imports
-import { useCurrentUser } from "../../auth/hooks/useAuth.js";
 import { libraries } from "../../../data/mock_data.js";
 import { formatDate } from "../../../lib/utils.js";
 import { StatusBadge } from "../components/statusBadge.jsx";
 
-const activity = [
-    { day: "Mon", value: 42 },
-    { day: "Tue", value: 58 },
-    { day: "Wed", value: 49 },
-    { day: "Thu", value: 76 },
-    { day: "Fri", value: 63 },
-    { day: "Sat", value: 81 },
-    { day: "Sun", value: 69 },
-];
-
 export default function AdminOverviewPage() {
-    const { data: response } = useCurrentUser();
-    const user = response?.data;
+    const { user } = useOutletContext();
     const pending = libraries.filter((library) => library.status === "pending");
 
-    const profile = {
-        "username": "fraol"
-    };
+    const today = new Date().toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+    });
 
     return (
         <div className="mx-auto max-w-7xl space-y-7">
             <div>
                 <div className="text-sm font-semibold text-text">
-                    Sunday, August 9
+                    {today}
                 </div>
                 <h1 className="mt-1 text-3xl font-extrabold tracking-tight text-text">
-                    Good evening, {profile.username}
+                    Good evening, {user?.username}
                 </h1>
                 <p className="mt-1 text-text-muted">
                     Here's what's happening across your library network.
@@ -43,19 +31,21 @@ export default function AdminOverviewPage() {
             </div>
 
             <div className="grid gap-4 p-2 sm:grid-cols-2 xl:grid-cols-3 xl:grid-flow-col cyber-card">
-                {/* TODO: inject data from backend */}
+                {/* TODO: wire to real getAllLibrary counts once useAdminLibraries hook exists */}
                 <Stat
                     label="Registered libraries"
                     value="86"
                     change="8.4%"
                     Icon={Building2}
                 />
+                {/* TODO: no backend yet — users list endpoint not built (later phase) */}
                 <Stat
                     label="Total members"
                     value="12,482"
                     change="5.2%"
                     Icon={Users}
                 />
+                {/* TODO: no backend yet — catalog is a later phase */}
                 <Stat
                     label="Books in catalog"
                     value="48,920"
@@ -64,7 +54,7 @@ export default function AdminOverviewPage() {
                 />
                 <Stat
                     label="Pending reviews"
-                    value={String(pending.length + 5)}
+                    value={String(pending.length)}
                     change="3 new"
                     Icon={Clock3}
                 />
@@ -75,62 +65,24 @@ export default function AdminOverviewPage() {
                         <div className="flex items-center gap-3">
                             <span className="sparkle size-4" />
                             <div>
-
-                            <h2 className="font-bold">Borrowing activity</h2>
-                            <p className="mt-1 text-xs text-text-muted">
-                                Books checked out over the last 7 days
-                            </p>
+                                <h2 className="font-bold">Borrowing activity</h2>
+                                <p className="mt-1 text-xs text-text-muted">
+                                    Books checked out over the last 7 days
+                                </p>
                             </div>
                         </div>
-                        <button className="rounded-lg border border-surface px-3 py-1.5 text-xs font-semibold text-text hover:bg-accent ">
-                            This week
-                        </button>
                     </div>
-                    <div className="mt-5 h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={activity}>
-                                <defs>
-                                    <linearGradient
-                                        id="fill"
-                                        x1="0"
-                                        y1="0"
-                                        x2="0"
-                                        y2="1">
-                                        <stop
-                                            offset="0%"
-                                            stopColor="#0f172a"
-                                            stopOpacity={0.16}
-                                        />
-                                        <stop
-                                            offset="100%"
-                                            stopColor="#0f172a"
-                                            stopOpacity={0}
-                                        />
-                                    </linearGradient>
-                                </defs>
-                                <XAxis
-                                    dataKey="day"
-                                    axisLine={false}
-                                    tickLine={false}
-                                    tick={{ fontSize: 11, fill: "#94a3b8" }}
-                                />
-                                <Tooltip
-                                    cursor={{ stroke: "#cbd5e1" }}
-                                    contentStyle={{
-                                        borderRadius: 12,
-                                        border: "1px solid #e2e8f0",
-                                        fontSize: 12,
-                                    }}
-                                />
-                                <Area
-                                    type="monotone"
-                                    dataKey="value"
-                                    stroke="#0f172a"
-                                    strokeWidth={2.5}
-                                    fill="url(#fill)"
-                                />
-                            </AreaChart>
-                        </ResponsiveContainer>
+                    {/* No borrowings/rentals table or endpoint exists yet (Phase 5-6 work).
+                        Showing an honest empty state instead of fake data. */}
+                    <div className="mt-5 flex h-64 flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-border text-center">
+                        <Clock3 size={22} className="text-text-muted" />
+                        <p className="text-sm font-semibold text-text">
+                            Not available yet
+                        </p>
+                        <p className="max-w-xs text-xs text-text-muted">
+                            Borrowing activity will show up here once the
+                            rental system is built.
+                        </p>
                     </div>
                 </section>
 
@@ -144,6 +96,7 @@ export default function AdminOverviewPage() {
                             </p>
                         </div>
                     </div>
+                    {/* TODO: wire to real getAllLibrary counts once useAdminLibraries hook exists */}
                     <div className="mt-6 space-y-5">
                         <Health label="Approved" value="72" total="86" />
                         <Health label="Pending" value="8" total="86" />
@@ -152,7 +105,6 @@ export default function AdminOverviewPage() {
                     <div className="mt-7 rounded-xl bg-surface p-4">
                         <div className="flex gap-3">
                             <div>
-
                                 <AlertTriangle
                                     size={20}
                                     className="mt-0.5 text-danger"
@@ -161,7 +113,7 @@ export default function AdminOverviewPage() {
 
                             <div>
                                 <div className="text-sm font-bold">
-                                    8 registrations need review
+                                    {pending.length} registrations need review
                                 </div>
                                 <div className="mt-1 text-xs leading-5 text-text-muted">
                                     Review applications before they can operate
@@ -174,7 +126,6 @@ export default function AdminOverviewPage() {
                                 </Link>
                             </div>
                         </div>
-
                     </div>
                 </section>
             </div>
@@ -188,7 +139,6 @@ export default function AdminOverviewPage() {
                         <p className="mt-1 text-xs text-text-muted">
                             Newest applications waiting for action
                         </p>
-
                     </div>
                     <Link
                         to="/admin/libraries"
@@ -227,7 +177,7 @@ export default function AdminOverviewPage() {
     );
 }
 
-function Stat({ label, value, change, Icon, }) {
+function Stat({ label, value, change, Icon }) {
     return (
         <div className="rounded-2xl lg:w-3xs border border-border bg-surface p-5 shadow-sm shadow-accent-alt">
             <div className="flex items-start justify-between">
@@ -247,11 +197,7 @@ function Stat({ label, value, change, Icon, }) {
     );
 }
 
-function Health({
-    label,
-    value,
-    total,
-}) {
+function Health({ label, value, total }) {
     return (
         <div>
             <div className="mb-2 flex justify-between text-sm">

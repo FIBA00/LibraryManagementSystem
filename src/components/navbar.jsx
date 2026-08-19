@@ -31,7 +31,7 @@ function LanguageSwitcher() {
 	return (
 		<button
 			onClick={toggle}
-			className="text-xs font-semibold text-parchment border border-orange-edge rounded-full px-3 py-1.5 hover:bg-orange-pale hover:text-c-bg transition-colors"
+			className="text-xs font-semibold text-text border border-border rounded-full px-3 py-1.5 hover:bg-accent hover:text-text transition-colors delay-150 duration-200 ease-in-out cursor-pointer"
 			aria-label="Switch language">
 			{i18n.language === "am" ? "EN" : "አማ"}
 		</button>
@@ -53,7 +53,7 @@ export default function NavBar() {
 
 	// active link uses the orange accent to match the theme
 	const linkClass = ({ isActive }) =>
-		`text-sm font-medium transition-colors ${isActive ? "text-c-orange" : "text-parchment/80 hover:text-c-orange"
+		`text-sm font-medium transition-colors ${isActive ? "text-success" : "text-text/80 hover:text-c-orange"
 		}`;
 
 	// TODO: Implement is logged in check
@@ -63,17 +63,17 @@ export default function NavBar() {
 
 	return (
 		<header
-			className={`sticky top-0 inset-x-0 z-40 px-2 h-15 gap-2 max-w-full bg-c-bg/90 backdrop-blur border-b border-c-red/25 transition-shadow duration-200 ${scrolled ? "shadow-card" : ""
+			className={`sticky top-0 inset-x-0 z-40 px-2 h-15 gap-2 max-w-full  bg-surface-raised/90 backdrop-blur border-b border-border-strong transition-shadow duration-200 ${scrolled ? "shadow-card" : ""
 				}`}>
 			<div className="max-w-6xl mx-auto px-2">
 				<div className="flex items-center justify-between h-16">
 					{/* logo */}
 					<Link to="/" className="flex items-center gap-2.5">
-						<span className="grid size-9 place-items-center rounded-xl bg-c-orange">
+						<span className="grid size-9 place-items-center rounded-xl bg-surface">
 							<BookOpen size={20} />
 						</span>
 						<span className="text-xl">
-							Book <span className="text-c-orange">Bridge</span>
+							Book <span className="text-accent">Bridge</span>
 						</span>
 					</Link>
 
@@ -88,7 +88,7 @@ export default function NavBar() {
 
 					{/* desktop right side */}
 					<div className="hidden md:flex items-center gap-3">
-						<LanguageSwitcher />
+						<LanguageSwitcher  />
 						<ThemeToggle />
 
 						{/* getting started */}
@@ -109,15 +109,15 @@ export default function NavBar() {
 							aria-label="Toggle menu"
 							aria-expanded={menuOpen}>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""
+								className={`block w-5 h-0.5 bg-c-bg  rounded  transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-2" : ""
 									}`}
 							/>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""
+								className={`block w-5 h-0.5 bg-c-bg rounded transition-opacity duration-200 ${menuOpen ? "opacity-0" : ""
 									}`}
 							/>
 							<span
-								className={`block w-5 h-0.5 bg-parchment rounded transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""
+								className={`block w-5 h-0.5 bg-c-bg rounded transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-2" : ""
 									}`}
 							/>
 						</button>
@@ -132,16 +132,16 @@ export default function NavBar() {
 						animate={{ height: "auto", opacity: 1 }}
 						exit={{ height: 0, opacity: 0 }}
 						transition={{ duration: 0.2 }}
-						className="md:hidden border-t border-orange-edge/25 bg-c-card overflow-hidden">
+						className="md:hidden cyber-card border-t border-border/25 bg-surface overflow-hidden">
 
 
-						<div className="px-6 py-4 flex flex-col gap-4">
+						<div className="px-4 py-4 flex flex-col gap-4">
 							{NavLinks.map(({ key, to, label }) => (
 								<NavLink
 									key={key}
 									to={to}
 									onClick={() => setMenuOpen(false)}
-									className="text-base font-medium text-parchment/80 py-1">
+									className="text-base font-medium text-text px-2 hover:bg-accent rounded-2xl transition-colors ease-in-out">
 									{t(`nav.${key}`, label)}
 								</NavLink>
 							))}
