@@ -1,4 +1,4 @@
-import { request } from "./client.js";
+import { request } from "../../../api/client.js";
 
 export async function loginUser(payload) {
     return request("/user/login", {
