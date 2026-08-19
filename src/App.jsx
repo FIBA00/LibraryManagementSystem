@@ -21,13 +21,17 @@ import ReaderProfilePage from "./features/auth/pages/reader.jsx";
 import LibraryOwnerProfilePage from "./features/auth/pages/owner.jsx";
 import LibraryOwnerDashboardPage from "./features/libraries/pages/ownerDashboard.jsx";
 import AdminLayout from "./features/admin/layout/admin.layout.js";
-import AdminDashboardPage from "./features/admin/pages/adminDashboard.jsx";
+import AdminManageLibraries from "./features/admin/pages/adminDashboard.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
 import UnauthorizedPage from "./pages/unauthorized.jsx";
+import AdminOverviewPage from "./features/admin/pages/adminOverview.jsx";
+import AdminLibraryDetailsPage from "./features/admin/pages/adminLibraries.jsx";
+import AdminSettingsPage from "./features/admin/pages/adminSettings.jsx";
+import AdminReportsPage from "./features/admin/pages/adminReports.jsx";
 
 export default function App() {
 	const location = useLocation();
-	const isProfileRoute = location.pathname.startsWith("/reader") || location.pathname.startsWith("/owner");
+	const isProfileRoute = location.pathname.startsWith("/reader") || location.pathname.startsWith("/owner") || location.pathname.startsWith("/admin");
 
 	return (
 		<div>
@@ -71,11 +75,16 @@ export default function App() {
 					</Route>
 				</Route>
 
-				<Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}>
-					<Route element={<AdminLayout />}>
-						<Route path="/admin" element={<AdminDashboardPage />} />
-					</Route>
+				{/* <Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}> */}
+				<Route element={<AdminLayout />}>
+					<Route path="/admin/overview" element={<AdminOverviewPage />} />
+					<Route path="/admin/libraries" element={<AdminManageLibraries />} />
+					<Route path="/admin/libraries/:id" element={<AdminLibraryDetailsPage />} />
+					<Route path="/admin/settings" element={<AdminSettingsPage />} />
+					<Route path="/admin/reports" element={<AdminReportsPage />} />
+
 				</Route>
+				{/* </Route> */}
 
 
 				<Route path="/unauthorized" element={<UnauthorizedPage />}></Route>

@@ -3,8 +3,10 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
 import { NavLink, Link } from "react-router-dom";
 import { BookOpen } from "lucide-react";
-import ThemeToggle from "./theme.jsx";
+
+// internal imports
 import { useCurrentUser } from "../features/auth/hooks/useAuth.js";
+import ThemeToggle from "./theme.jsx";
 
 const dashboardPathByRole = {
 	admin: "/admin",
@@ -55,7 +57,7 @@ export default function NavBar() {
 		}`;
 
 	// TODO: Implement is logged in check
-	// eslint-disable-next-line
+	 
 	const dashboardPath = user ? (dashboardPathByRole[ user.role ] ?? "/reader") : "/login";
 	const dashboardLabel = isLoading ? "..." : user ? user.username : t("nav.login");
 
@@ -98,6 +100,8 @@ export default function NavBar() {
 					{/* mobile controls */}
 					<div className="md:hidden flex items-center gap-3">
 						<LanguageSwitcher />
+						<ThemeToggle />
+
 
 						<button
 							onClick={() => setMenuOpen((o) => !o)}

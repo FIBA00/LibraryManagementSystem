@@ -82,11 +82,11 @@
 		background-position:
 			0 0,
 			15px 15px;
-		opacity: 0.3;
+		opacity: 0.2;
 	}
 	/* 2. The Hexagon Grid (Dark orange) */
 	.hex-bg {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 11.5V34.5L20 46L0 34.5V11.5L20 0Z' fill='none' stroke='%23FF8C00' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 11.5V34.5L20 46L0 34.5V11.5L20 0Z' fill='none' stroke='%23FF8C00' stroke-width='0.5' opacity='0.5'/%3E%3C/svg%3E");
 	}
 
 	/* 3. The Glowing Crosses (Exact match to image) */
@@ -119,16 +119,16 @@
 		background: var(--color-c-pink);
 		border-radius: 50%;
 		box-shadow:
-			0 0 10px var(--color-c-pink),
-			0 0 30px var(--color-c-pink);
+			0 0 10px var(--color-c-red),
+			0 0 30px var(--color-c-orange);
 	}
 
 	/* The Main Card Component */
 	.cyber-card {
-		background-color: var(--color-c-card);
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		background-color: var(--color-c-surface);
+		border: 1px solid rgba(227, 156, 13, 0.799);
 		border-radius: 20px;
-		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+		box-shadow: 0 10px 40px rgba(211, 80, 9, 0.6);
 		position: relative;
 		overflow: hidden;
 	}
