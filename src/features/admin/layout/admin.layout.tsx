@@ -18,7 +18,7 @@ import { useState } from "react";
 
 // internal imports
 import ThemeToggle from "../../../components/theme.jsx";
-import { cn } from "../../../lib/utils.js";
+import { cn, getInitials } from "../../../lib/utils.js";
 import { useCurrentUser } from "../../auth/hooks/useAuth.js";
 
 const sections = [
@@ -48,10 +48,7 @@ const NavLinks = [
 	{ key: "libraries", to: "/libraries", label: "Find Libraries" },
 ];
 
-function getInitials(username) {
-	if (!username) return "..";
-	return username.slice(0, 2).toUpperCase();
-}
+
 
 export default function AdminLayout() {
 	const [ sideBarOpen, setSideBarOpen ] = useState(false);

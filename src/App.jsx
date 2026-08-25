@@ -1,40 +1,44 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-//------------ internal imports----------------
-// Pages
+//------------ internal imports-----------------------------------------
+// --------------Pages--------------------------------------------------
 import Home from "./pages/home.jsx";
 import Books from "./pages/books.jsx";
 import Libraries from "./pages/libraries.jsx";
 import ForLibraries from "./pages/forLibraries.jsx";
+import UnauthorizedPage from "./pages/unauthorized.jsx";
 
-// components
+// ----------------components-------------------------------------------
 import NavBar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
+import ProtectedRoute from "./components/protectedRoute.jsx";
 
-// features
+// ----------------features---------------------------------------------
+// auth
 import LoginPage from "./features/auth/pages/login.jsx";
 import SignupPage from "./features/auth/pages/signup.jsx";
 import AuthLayout from "./features/auth/layout/auth.layout.jsx";
 import ProfileLayout from "./features/auth/layout/profile.layout.jsx";
 import ReaderProfilePage from "./features/auth/pages/reader.jsx";
 import LibraryOwnerProfilePage from "./features/auth/pages/owner.jsx";
-import LibraryOwnerDashboardPage from "./features/libraries/pages/ownerDashboard.jsx";
 
-import ProtectedRoute from "./components/protectedRoute.jsx";
-import UnauthorizedPage from "./pages/unauthorized.jsx";
+// libraries
+import OwnerLayout from "./features/libraries/layout/ownerLayout.jsx";
+import LibraryDashboardPage from "./features/libraries/pages/libraryDashboard.jsx";
 
 
-// admin related
+
+// admin 
 import AdminLayout from "./features/admin/layout/admin.layout.js";
 import AdminManageLibraries from "./features/admin/pages/adminDashboard.jsx";
-
 
 import AdminOverviewPage from "./features/admin/pages/adminOverview.jsx";
 import AdminManageUsers from "./features/admin/pages/adminUsers.jsx";
 import AdminLibraryDetailsPage from "./features/admin/pages/adminLibraries.jsx";
 import AdminSettingsPage from "./features/admin/pages/adminSettings.jsx";
 import AdminReportsPage from "./features/admin/pages/adminReports.jsx";
+import LibraryCreatePage from "./features/libraries/pages/libraryCreate.jsx";
 
 export default function App() {
 	const location = useLocation();
@@ -75,13 +79,21 @@ export default function App() {
 							path="/owner"
 							element={<LibraryOwnerProfilePage />}
 						/>
-						<Route
-							path="/dashboard"
-							element={<LibraryOwnerDashboardPage />}
-						/>
 					</Route>
 				</Route>
 
+				{/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
+				<Route element={<OwnerLayout />} >
+					<Route path="/owner/library"
+						element={<LibraryDashboardPage />}
+					/>
+
+					<Route path="/owner/library/create" element={<LibraryCreatePage />}
+					/>
+				</Route>
+				{/* </Routes> */}
+
+				{/* admin related */}
 				<Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}>
 					<Route element={<AdminLayout />}>
 						<Route path="/admin/" element={<AdminOverviewPage />} />
@@ -99,7 +111,6 @@ export default function App() {
 
 				<Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
 
-				{/* admin related */}
 
 
 			</Routes>

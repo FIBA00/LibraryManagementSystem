@@ -1,11 +1,11 @@
-import { request } from "./client.js";
+import { request } from "../../../api/client.js";
 
-export async function getAllLibraries(params = {}) {
+export async function getAllAdminLibraries(params = {}) {
     const query = new URLSearchParams(params).toString();
     return request(`/admin/libraries${query ? `?${query}` : ""}`);
 }
 
-export async function getLibrary(id) {
+export async function getAdminLibrary(id) {
     return request(`/admin/libraries/${id}`);
 }
 

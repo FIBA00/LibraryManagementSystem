@@ -9,3 +9,14 @@ export function formatDate(value) {
 		year: "numeric",
 	}).format(new Date(value));
 }
+
+export function getInitials(username) {
+	if (!username) return "..";
+	return username.slice(0, 2).toUpperCase();
+}
+
+export const today = new Date().toLocaleDateString(undefined, {
+	weekday: "long",
+	month: "long",
+	day: "numeric",
+});

@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 // internal imports
 import {
-	getAllLibraries,
-	getLibrary,
+	getAllAdminLibraries,
+	getAdminLibrary,
 	approveLibrary,
 	suspendLibrary,
 	rejectLibrary,
@@ -13,21 +13,21 @@ import {
 export function useAdminLibraries(params = {}) {
 	return useQuery({
 		queryKey: [ "adminLibraries", params ],
-		queryFn: () => getAllLibraries(params),
+		queryFn: () => getAllAdminLibraries(params),
 	});
 }
 
 export function useAdminLibrary(id) {
 	return useQuery({
 		queryKey: [ "adminLibrary", id ],
-		queryFn: () => getLibrary(id),
+		queryFn: () => getAdminLibrary(id),
 		enabled: Boolean(id),
 	});
 }
 
 // approve/suspend/reject/delete all follow the same shape: call the endpoint
 // with an id, then invalidate the list + that single library's cache entry.
-function useLibraryStatusMutation(mutationFn) {
+function useAdminLibraryStatusMutation(mutationFn) {
 	const queryClient = useQueryClient();
 
 	return useMutation({
@@ -40,17 +40,17 @@ function useLibraryStatusMutation(mutationFn) {
 }
 
 export function useApproveLibrary() {
-	return useLibraryStatusMutation(approveLibrary);
+	return useAdminLibraryStatusMutation(approveLibrary);
 }
 
 export function useSuspendLibrary() {
-	return useLibraryStatusMutation(suspendLibrary);
+	return useAdminLibraryStatusMutation(suspendLibrary);
 }
 
 export function useRejectLibrary() {
-	return useLibraryStatusMutation(rejectLibrary);
+	return useAdminLibraryStatusMutation(rejectLibrary);
 }
 
 export function useDeleteLibrary() {
-	return useLibraryStatusMutation(deleteLibrary);
+	return useAdminLibraryStatusMutation(deleteLibrary);
 }

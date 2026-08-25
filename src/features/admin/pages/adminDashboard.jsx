@@ -7,7 +7,7 @@ import { Link, useSearchParams } from "react-router-dom";
 
 import { libraries } from "../../../data/mock_data.js";
 import { formatDate } from "../../../lib/utils.js";
-import { StatusBadge } from "../components/statusBadge.jsx";
+import StatusBadge  from "../components/statusBadge.jsx";
 
 
 const libraryStatuses = [ "all", "pending", "approved", "suspended", "rejected" ];

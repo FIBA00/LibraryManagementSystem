@@ -1,6 +1,6 @@
 import { cn } from "../../../lib/utils.js";
 
-export function StatusBadge({ status }) {
+export default function StatusBadge({ status }) {
 	const styles = {
 		pending: "bg-accent-alt text-text ring-amber-200",
 		approved: "bg-success text-text ring-red-200",
