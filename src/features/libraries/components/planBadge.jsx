@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-import { classNameMerge } from "../lib/utils.js";
+import { classNameMerge } from "../../../lib/utils.js";
 
 const badgeVariants = cva(
   "rounded px-1.5 py-1 text-[9px] font-extrabold capitalize",

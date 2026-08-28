@@ -2,10 +2,11 @@
 import { Download, Plus, SlidersHorizontal } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
+// ! internal imports
+import { money } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
-import { money, SlimMetrics } from "../lib/utils.js";
-import { TransactionForm } from "../components/forms/transactionForm.jsx";
+import TransactionForm  from "../components/forms/transactionForm.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
 
 export default function FinancesView({
   data,

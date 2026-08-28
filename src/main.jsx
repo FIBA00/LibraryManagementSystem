@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 
@@ -12,14 +13,13 @@ import { ThemeProvider } from "./context/themeContext.jsx";
 import { queryClient } from "./api/query.client.js";
 
 // styles
-// import "./index.css"; 
-import "./index_main.css"; //main
-
-import "./refinements.css";
-import "./forms.css";
-import "./record-management.css";
-import "./style-review.css";
-import "./app-extensions.css";
+import "./styles/index.css"; 
+import "./styles/index_main.css"; //main
+import "./styles/refinements.css";
+import "./styles/forms.css";
+import "./styles/record-management.css";
+import "./styles/style-review.css";
+import "./styles/app-extensions.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

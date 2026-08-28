@@ -1,6 +1,6 @@
 // Dashboard query hook: independent endpoint reads stay cacheable and branch-scoped through TanStack Query.
 import { useQueries, useQuery } from "@tanstack/react-query";
-import { libraryApi } from "@/api/library.api";
+import { libraryApi } from "../api/library.api.js";
 
 const resourceDefinitions = [
   ["books", libraryApi.getBooks],

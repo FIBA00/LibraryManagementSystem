@@ -1,12 +1,13 @@
 import { Download, Check } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
-import { money, SlimMetrics, withNotice } from "../lib/utils.js";
+// ! internal imports
+import { money, withNotice } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
 
 export default function PayrollView({ data, onNotice, mutations, selectedLibrary }) {
   const [query, setQuery] = useState("");

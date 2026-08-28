@@ -1,7 +1,7 @@
 // Swap-ready mutation hooks: each named write maps to library.api.js and invalidates only the affected resource caches.
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { libraryApi } from "@/api/library.api";
+import { libraryApi } from "../api/library.api.js";
 
 export default function useLibraryMutations() {
   const queryClient = useQueryClient();

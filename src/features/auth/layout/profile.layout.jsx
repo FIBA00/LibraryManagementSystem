@@ -13,7 +13,7 @@ import {
     X,
 } from "lucide-react";
 
-import { cn } from "../../../lib/utils.js";
+import { classNameMerge } from "../../../lib/utils.js";
 
 const NavLinks = [
     { key: "home", to: "/", label: "Home" },
@@ -36,7 +36,7 @@ export default function ProfileLayout() {
     return (
         <div className="min-h-screen">
             <aside
-                className={cn(
+                className={classNameMerge(
                     "fixed inset-y-0 left-0 z-40 flex w-72 flex-col bg-c-card border-r border-slate-600 transition-transform lg:translate-x-0",
                     sideBarOpen ? "translate-x-0" : "-translate-x-full",
                 )}>
@@ -75,7 +75,7 @@ export default function ProfileLayout() {
                                 to={to}
                                 onClick={() => setSideBarOpen(false)}
                                 className={({ isActive }) =>
-                                    cn(
+                                    classNameMerge(
                                         "block rounded-xl px-3 py-2.5 text-sm font-medium transition",
                                         isActive
                                             ? "bg-c-card text-white shadow-sm"

@@ -8,10 +8,13 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
-import { SlimMetrics, withNotice } from "../lib/utils.js";
+
+// ! internal imports
+import { withNotice } from "../../../lib/utils.js";
 import StatusPill from "../components/statusPill.jsx";
 import ActionMenu from "../components/actionMenu.jsx";
 import SysPanel from "../components/panel.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
 
 export default function AttendanceView({ data, onNotice, mutations, selectedLibrary }) {
   const [date, setDate] = useState("2026-08-27");

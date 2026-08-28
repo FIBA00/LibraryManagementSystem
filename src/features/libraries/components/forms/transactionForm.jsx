@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-// internal imports
+// ! internal imports
 import {
   Dialog,
   DialogContent,
@@ -12,9 +12,9 @@ import {
   DialogTitle,
 } from "../../../../components/dialog.jsx";
 
-import Field from "../ui/field.jsx";
-import FormSubmit from "../ui/formSubmit.jsx";
-import BranchOptions from "./branchOptions.jsx";
+import Field from "../field.jsx";
+import FormSubmit from "../formSubmit.jsx";
+import BranchOptions from "../branchOptions.jsx";
 import transactionSchema from "../../schemas/transaction.schema.js";
 
 function defaultTransaction(libraryId) {
@@ -28,7 +28,7 @@ function defaultTransaction(libraryId) {
   };
 }
 
-export function TransactionForm({
+export default function TransactionForm({
   open,
   onOpenChange,
   libraries,

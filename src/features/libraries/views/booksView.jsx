@@ -1,16 +1,23 @@
 import { BookPlus, Filter, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
-import { Busy, SlimMetrics, withNotice } from "../lib/utils.js";
+// ! internal imports
+import { withNotice } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
 import BookForm from "../components/forms/bookForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
+import Busy from "../components/busyBadge.jsx";
 
-export default function BooksView({ data, onNotice, mutations, selectedLibrary }) {
+export default function BooksView({
+  data,
+  onNotice,
+  mutations,
+  selectedLibrary,
+}) {
   const [query, setQuery] = useState("");
   const [genre, setGenre] = useState("all");
   const [condition, setCondition] = useState("all");

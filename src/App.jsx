@@ -26,6 +26,18 @@ import LibraryOwnerProfilePage from "./features/auth/pages/owner.jsx";
 // libraries
 import OwnerLayout from "./features/libraries/layout/ownerLayout.jsx";
 import LibraryDashboardPage from "./features/libraries/pages/libraryDashboard.jsx";
+import {
+  OverviewRoute,
+  LibrariesRoute,
+  BooksRoute,
+  RentalsRoute,
+  StaffRoute,
+  FinancesRoute,
+  PayrollRoute,
+  AttendanceRoute,
+  MemberRoute,
+  SettingsRoute,
+} from "./features/libraries/routes/libraryRoutes.jsx";
 
 // admin
 import AdminLayout from "./features/admin/layout/admin.layout.js";
@@ -55,35 +67,42 @@ export default function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/libraries" element={<Libraries />} />
         <Route path="/forlibraries" element={<ForLibraries />} />
-
         {/* Auth pages */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<SignupPage />} />
         </Route>
-
         {/* Reader routes */}
         <Route element={<ProtectedRoute allowedRoles={["reader"]} />}>
           <Route element={<ProfileLayout />}>
             <Route path="/reader" element={<ReaderProfilePage />} />
           </Route>
         </Route>
-
         {/* Owner routes */}
         <Route element={<ProtectedRoute allowedRoles={["owner"]} />}>
           <Route element={<ProfileLayout />}>
             <Route path="/owner" element={<LibraryOwnerProfilePage />} />
           </Route>
         </Route>
-``
-        {/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
-        <Route element={<OwnerLayout />}>
-          <Route path="/owner/library" element={<LibraryDashboardPage />} />
+        ``
+        {/* <Route element={<ProtectedRoute allowedRoles={["owner"]} />}> */}
+          <Route path="/owner/library" element={<LibraryDashboardPage />}>
+            <Route index element={<OverviewRoute />} />
+            <Route path="libraries" element={<LibrariesRoute />} />
+            <Route path="books" element={<BooksRoute />} />
+            <Route path="rentals" element={<RentalsRoute />} />
+            <Route path="staff" element={<StaffRoute />} />
+            <Route path="finances" element={<FinancesRoute />} />
+            <Route path="payroll" element={<PayrollRoute />} />
+            <Route path="attendance" element={<AttendanceRoute />} />
+            <Route path="member" element={<MemberRoute />} />
+            <Route path="settings" element={<SettingsRoute />} />
+          </Route>
 
           <Route path="/owner/library/create" element={<LibraryCreatePage />} />
-        </Route>
-        {/* </Routes> */}
+        {/* </Route> */}
 
+        
         {/* admin related */}
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route element={<AdminLayout />}>
@@ -99,7 +118,6 @@ export default function App() {
             <Route path="/admin/reports" element={<AdminReportsPage />} />
           </Route>
         </Route>
-
         <Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
       </Routes>
 

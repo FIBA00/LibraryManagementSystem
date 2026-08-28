@@ -14,8 +14,8 @@ import {
 // internal imports
 import bookSchema from "../../schemas/book.schema.js";
 import Field from "../field.jsx";
-import FormSubmit from "./formSubmit.jsx";
-import BranchOptions from "./branchOptions.jsx";
+import FormSubmit from "../formSubmit.jsx";
+import BranchOptions from "../branchOptions.jsx";
 
 
 function defaultBook(libraryId) {

@@ -2,14 +2,17 @@
 import { ListFilter, Plus } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
-import { Busy, SlimMetrics, withNotice } from "../lib/utils.js";
+// ! internal imports
+
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
 import PlanBadge from "../components/planBadge.jsx";
 import LibraryForm from "../components/forms/libraryForm.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
+import Busy from "../components/busyBadge.jsx";
+import { withNotice } from "../../../lib/utils.js";
 
 export default function LibrariesView({ data, onNotice, mutations }) {
   const [query, setQuery] = useState("");

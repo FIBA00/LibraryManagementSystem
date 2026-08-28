@@ -1,6 +1,7 @@
 // Scholar's Ledger shell: a JSX-only, branch-aware workspace that retains the supplied dashboard’s functional hierarchy.
 import { FileText } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 // ! internal imports
 import LoadingState from "../components/loadingState.jsx";
@@ -15,25 +16,34 @@ import useLibraryDashboardQuery from "../hooks/useLibraryDashboardQuery.js";
 import useLibraryMutations from "../hooks/useLibraryMutations.js";
 
 // libs
-import { downloadRentalReceipt, downloadTransactionReceipt } from "../lib/receiptPdf.js";
-
-// view
-import Overview from "../views/overview.jsx";
-import LibrariesView from "../views/librariesView.jsx";
-import BooksView from "../views/booksView.jsx";
-import RentalsView from "../views/rentalsView.jsx";
-import StaffView  from "../views/staffView.jsx";
-import FinancesView  from "../views/financeView.jsx";
-import PayrollView from "../views/payrollView.jsx";
-import AttendanceView from "../views/attendanceView.jsx";
-import MemberProfile from "../views/memberProfile.jsx";
-import SettingsView from "../views/settingsView.jsx";
-
+import {
+  downloadRentalReceipt,
+  downloadTransactionReceipt,
+} from "../lib/receiptPdf.js";
 
 import { initialActivities } from "../../../data/libraryData.js";
 
+const routes = {
+  overview: "/owner/library",
+  libraries: "/owner/library/libraries",
+  books: "/owner/library/books",
+  rentals: "/owner/library/rentals",
+  staff: "/owner/library/staff",
+  finances: "/owner/library/finances",
+  payroll: "/owner/library/payroll",
+  attendance: "/owner/library/attendance",
+  settings: "/owner/library/settings",
+};
+
 export default function LibraryDashboardPage() {
-  const [activeView, setActiveView] = useState("overview");
+  // ! const [activeView, setActiveView] = useState("overview");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activeView =
+    location.pathname.split("/").pop() === "library"
+      ? "overview"
+      : location.pathname.split("/").pop();
+
   const [selectedLibraryId, setSelectedLibraryId] = useState(null);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [notice, setNotice] = useState("");
@@ -85,7 +95,8 @@ export default function LibraryDashboardPage() {
 
   function openMember(memberName) {
     setSelectedMember(memberName);
-    setActiveView("member");
+    // setActiveView("member");
+    navigate("/owner/library/member");
   }
 
   function receiptForRental(rental) {
@@ -107,48 +118,38 @@ export default function LibraryDashboardPage() {
   }
 
   function handleSearchSelect(result) {
-    if (result.memberName) setSelectedMember(result.memberName);
-    setActiveView(result.view);
+    if (result.memberName) {
+      setSelectedMember(result.memberName);
+    }
+
+    // setActiveView(result.view);
+    handleViewChange(result.view);
   }
 
-  const shared = {
+  function handleViewChange(view) {
+    navigate(routes[view] || "/owner/library");
+  }
+
+  const outletContext = {
     data,
     selectedLibrary,
-    onViewChange: setActiveView,
-    onNotice: showNotice,
     mutations,
+    onNotice: showNotice,
     onMemberSelect: openMember,
     onDownloadRentalReceipt: receiptForRental,
     onDownloadTransactionReceipt: receiptForTransaction,
+    settings,
+    updateSettings,
+    resetSettings,
+    selectedMember,
   };
-
-  const views = {
-    overview: <Overview {...shared} />,
-    libraries: <LibrariesView {...shared} />,
-    books: <BooksView {...shared} />,
-    rentals: <RentalsView {...shared} />,
-    staff: <StaffView {...shared} />,
-    finances: <FinancesView {...shared} />,
-    payroll: <PayrollView {...shared} />,
-    attendance: <AttendanceView {...shared} />,
-    member: <MemberProfile {...shared} memberName={selectedMember} />,
-    settings: (
-      <SettingsView
-        settings={settings}
-        onUpdateSettings={updateSettings}
-        onResetSettings={resetSettings}
-        onNotice={showNotice}
-      />
-    ),
-  };
-
   return (
     <div
       className={`dashboard-app ${settings.darkMode ? "dark-theme" : ""} ${settings.compactTables ? "compact-tables" : ""}`}
     >
       <Sidebar
         activeView={activeView}
-        onViewChange={setActiveView}
+        onViewChange={handleViewChange}
         isOpen={isMenuOpen}
         onClose={() => setMenuOpen(false)}
         onNotice={showNotice}
@@ -176,7 +177,7 @@ export default function LibraryDashboardPage() {
           ) : isError ? (
             <ErrorState retry={refetch} />
           ) : (
-            views[activeView]
+            <Outlet context={{ outletContext }} />
           )}
         </main>
       </div>

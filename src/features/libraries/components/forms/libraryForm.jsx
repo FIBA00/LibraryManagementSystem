@@ -12,9 +12,9 @@ import {
   DialogTitle,
 } from "../../../../components/dialog.jsx";
 
-import Field from "../ui/field.jsx";
-import FormSubmit from "./formSubmit.jsx";
-import BranchOptions from "./branchOptions.jsx";
+import Field from "../field.jsx";
+import FormSubmit from "../formSubmit.jsx";
+import BranchOptions from "../branchOptions.jsx";
 import librarySchema from "../../schemas/library.schema.js";
 
 function defaultLibrary(libraries) {

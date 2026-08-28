@@ -14,7 +14,7 @@ import {
 
 import Field from "../field.jsx";
 import FormSubmit from "../formSubmit.jsx";
-import BranchOptions from "./branchOptions.jsx";
+import BranchOptions from "../branchOptions.jsx";
 import userSchema from "../../schemas/user.schema.js";
 
 function defaultUser(libraryId) {

@@ -1,15 +1,16 @@
 import { Clipboard, FileText, Plus, RefreshCw, UserRound } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
-
-import SearchBox from "../components/ui/searchBox.jsx";
-import SysPanel from "../components/ui/panel.jsx";
-import StatusPill from "../components/ui/statusPill.jsx";
-import TableEmpty from "../components/ui/tableEmpty.jsx";
-import { ActionMenu } from "../components/actionMenu.jsx";
-import { RentalForm } from "../components/forms/rentalForm.jsx";
-import { Busy, SlimMetrics, withNotice } from "../lib/utils.js";
+// ! internal imports
+import { withNotice } from "../../../lib/utils.js";
+import SearchBox from "../components/searchBox.jsx";
+import SysPanel from "../components/panel.jsx";
+import StatusPill from "../components/statusPill.jsx";
+import TableEmpty from "../components/tableEmpty.jsx";
+import ActionMenu from "../components/actionMenu.jsx";
+import RentalForm from "../components/forms/rentalForm.jsx";
+import SlimMetrics from "../components/slimMetrics.jsx";
+import Busy from "../components/busyBadge.jsx";
 
 export default function RentalsView({
   data,

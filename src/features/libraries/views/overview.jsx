@@ -10,6 +10,8 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
+
+// ! internal imports
 import MetricCard from "../components/metricCard.jsx";
 import SysPanel from "../components/panel.jsx";
 import StatusPill from "../components/statusPill.jsx";

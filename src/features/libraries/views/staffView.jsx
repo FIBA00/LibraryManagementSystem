@@ -1,16 +1,22 @@
 import { Filter, Pencil, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-// internal imports
+// ! internal imports
+import { money, withNotice } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
 import UserForm from "../components/forms/userForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
-import { money, SlimMetrics, withNotice } from "../lib/utils.js";
+import SlimMetrics from "../components/slimMetrics.jsx";
 
-export default function StaffView({ data, onNotice, mutations, selectedLibrary }) {
+export default function StaffView({
+  data,
+  onNotice,
+  mutations,
+  selectedLibrary,
+}) {
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("all");
   const [status, setStatus] = useState("all");
@@ -266,11 +272,9 @@ export default function StaffView({ data, onNotice, mutations, selectedLibrary }
           </div>
         )}
 
-        
         {!shown.length ? (
           <TableEmpty message="No people records match the current search and filters." />
         ) : null}
-
       </SysPanel>
 
       <UserForm

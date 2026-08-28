@@ -3,14 +3,14 @@ import { BookOpen, ChevronDown, ShieldCheck, User, X } from "lucide-react";
 import { useState } from "react";
 
 // internal imports
-import { cn } from "../lib/utils.js";
+import { classNameMerge } from "../lib/utils.js";
 
 export default function Sidebar({ ...props }) {
 	const [dropDownMenu, setDropDownMenu] = useState(false);
 
 	return (
 		<aside
-			className={cn(
+			className={classNameMerge(
 				"fixed inset-y-0 left-0 z-40 flex w-72 flex-col bg-surface border-r border-slate-600 transition-transform lg:translate-x-0",
 				props.sideBarOpen ? "translate-x-0" : "-translate-x-full",
 			)}>
@@ -59,7 +59,7 @@ export default function Sidebar({ ...props }) {
 												props.setSideBarOpen(false)
 											}
 											className={({ isActive }) =>
-												cn(
+												classNameMerge(
 													"mb-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
 													isActive
 														? "bg-surface-raised text-text shadow-sm shadow-accent-alt"

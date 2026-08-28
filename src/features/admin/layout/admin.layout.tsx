@@ -18,7 +18,7 @@ import { useState } from "react";
 
 // internal imports
 import ThemeToggle from "../../../components/theme.jsx";
-import { cn, getInitials } from "../../../lib/utils.js";
+import { classNameMerge, getInitials } from "../../../lib/utils.js";
 import { useCurrentUser } from "../../auth/hooks/useAuth.js";
 
 const sections = [
@@ -65,7 +65,7 @@ export default function AdminLayout() {
 	return (
 		<div className="mx-auto min-h-screen  hex-bg">
 			<aside
-				className={cn(
+				className={classNameMerge(
 					"fixed inset-y-0 left-0 z-40 flex w-72 flex-col bg-surface border-r border-slate-600 transition-transform lg:translate-x-0",
 					sideBarOpen ? "translate-x-0" : "-translate-x-full",
 				)}>
@@ -108,7 +108,7 @@ export default function AdminLayout() {
 												end={to === "/admin"}
 												onClick={() => setSideBarOpen(false)}
 												className={({ isActive }) =>
-													cn(
+													classNameMerge(
 														"mb-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
 														isActive
 															? "bg-surface-raised text-text shadow-sm shadow-accent-alt"

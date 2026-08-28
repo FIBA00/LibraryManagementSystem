@@ -1,4 +1,4 @@
-import { cn } from "../../../lib/utils.js";
+import { classNameMerge } from "../../../lib/utils.js";
 
 export default function StatusBadge({ status }) {
 	const styles = {
@@ -9,7 +9,7 @@ export default function StatusBadge({ status }) {
 	};
 	return (
 		<span
-			className={cn(
+			className={classNameMerge(
 				"inline-flex w-20 items-center text-center justify-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1",
 				styles[status],
 			)}>

@@ -12,7 +12,7 @@ import {
 import { useMemo, useState } from "react";
 
 // internal imports
-import { parseDate } from "../lib/utils.js";
+import { parseDate } from "../../../lib/utils.js";
 import StatusPill from "../components/statusPill.jsx";
 
 export default function MemberProfile({
