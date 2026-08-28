@@ -29,7 +29,7 @@ function defaultLibrary(libraries) {
   };
 }
 
-export function LibraryForm({
+export default function LibraryForm({
   open,
   onOpenChange,
   libraries,

@@ -1188,53 +1188,6 @@ select:focus-visible
   font-size: 9px;
 }
 
-.status-pill
-{
-  padding: 4px 7px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  border-radius: 99px;
-  font-size: 9px;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.status-pill.active,
-.status-pill.returned,
-.status-pill.paid,
-.status-pill.present,
-.status-pill.excellent
-{
-  color: #237044;
-  background: #eaf7f0;
-}
-
-.status-pill.overdue,
-.status-pill.absent
-{
-  color: #b91c1c;
-  background: #fee2e2;
-}
-
-.status-pill.maintenance,
-.status-pill.pending,
-.status-pill.processing,
-.status-pill.late,
-.status-pill.fair
-{
-  color: #9a5a00;
-  background: #fff3d7;
-}
-
-.status-pill.good,
-.status-pill.leave,
-.status-pill.on-leave
-{
-  color: #6d6154;
-  background: #f0ebe3;
-}
 
 .overdue-card
 {
@@ -1732,32 +1685,6 @@ select:focus-visible
   font-size: 11px;
 }
 
-.plan-badge
-{
-  padding: 4px 7px;
-  border-radius: 4px;
-  font-size: 9px;
-  font-weight: 800;
-  text-transform: capitalize;
-}
-
-.plan-badge.premium
-{
-  color: #74510d;
-  background: #fff2d0;
-}
-
-.plan-badge.standard
-{
-  color: #2457d6;
-  background: #e7eeff;
-}
-
-.plan-badge.basic
-{
-  color: #726255;
-  background: #f0ebe3;
-}
 
 .availability-cell
 {

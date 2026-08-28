@@ -4,11 +4,12 @@ import { useState } from "react";
 
 // internal imports
 import { Busy, SlimMetrics, withNotice } from "../lib/utils.js";
-import SysPanel from "../components/ui/panel.jsx";
-import SearchBox from "../components/ui/searchBox.jsx";
-import StatusPill from "../components/ui/statusPill.jsx";
-import TableEmpty from "../components/ui/tableEmpty.jsx";
-import { LibraryForm } from "../components/forms/libraryForm.jsx";
+import SysPanel from "../components/panel.jsx";
+import SearchBox from "../components/searchBox.jsx";
+import StatusPill from "../components/statusPill.jsx";
+import TableEmpty from "../components/tableEmpty.jsx";
+import PlanBadge from "../components/planBadge.jsx";
+import LibraryForm from "../components/forms/libraryForm.jsx";
 
 export default function LibrariesView({ data, onNotice, mutations }) {
   const [query, setQuery] = useState("");
@@ -120,9 +121,7 @@ export default function LibrariesView({ data, onNotice, mutations }) {
                   <td>{library.members.toLocaleString()}</td>
                   <td>{library.totalBooks.toLocaleString()} books</td>
                   <td>
-                    <span className={`plan-badge ${library.subscriptionPlan}`}>
-                      {library.subscriptionPlan}
-                    </span>
+                    <PlanBadge plan={library.subscriptionPlan} />
                   </td>
                   <td>
                     <StatusPill status={library.status} />

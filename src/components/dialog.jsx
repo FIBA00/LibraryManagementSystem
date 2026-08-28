@@ -1,8 +1,8 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
+import { classNameMerge } from "../lib/utils.js";
 
 // internal imports
-import classNameMerge from "../features/libraries/lib/utils.js";
 
 function Dialog(props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
