@@ -12,7 +12,8 @@ import { ThemeProvider } from "./context/themeContext.jsx";
 import { queryClient } from "./api/query.client.js";
 
 // styles
-import "./index.css"; //main
+// import "./index.css"; 
+import "./index_main.css"; //main
 
 import "./refinements.css";
 import "./forms.css";
