@@ -75,7 +75,7 @@ export default function App() {
             <Route path="/owner" element={<LibraryOwnerProfilePage />} />
           </Route>
         </Route>
-
+``
         {/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
         <Route element={<OwnerLayout />}>
           <Route path="/owner/library" element={<LibraryDashboardPage />} />

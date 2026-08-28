@@ -11,7 +11,7 @@ const resourceDefinitions = [
   ["attendance", libraryApi.getAttendanceRecords],
 ];
 
-export function useLibraryDashboardQuery(libraryId) {
+export default function useLibraryDashboardQuery(libraryId) {
   const librariesQuery = useQuery({
     queryKey: ["libraries"],
     queryFn: () => libraryApi.getLibraries(),
@@ -27,13 +27,24 @@ export function useLibraryDashboardQuery(libraryId) {
     })),
   });
 
-  const [booksQuery, rentalsQuery, staffQuery, transactionsQuery, payrollQuery, attendanceQuery] = resourceQueries;
+  const [
+    booksQuery,
+    rentalsQuery,
+    staffQuery,
+    transactionsQuery,
+    payrollQuery,
+    attendanceQuery,
+  ] = resourceQueries;
   const queries = [librariesQuery, monthlyQuery, ...resourceQueries];
 
   return {
     libraries: librariesQuery.data || [],
     data: {
-      libraries: libraryId ? (librariesQuery.data || []).filter((library) => library.id === libraryId) : (librariesQuery.data || []),
+      libraries: libraryId
+        ? (librariesQuery.data || []).filter(
+            library => library.id === libraryId
+          )
+        : librariesQuery.data || [],
       books: booksQuery.data || [],
       rentals: rentalsQuery.data || [],
       staff: staffQuery.data || [],
@@ -42,10 +53,10 @@ export function useLibraryDashboardQuery(libraryId) {
       attendance: attendanceQuery.data || [],
       monthly: monthlyQuery.data || [],
     },
-    isLoading: queries.some((query) => query.isLoading),
-    isFetching: queries.some((query) => query.isFetching),
-    isError: queries.some((query) => query.isError),
-    error: queries.find((query) => query.error)?.error,
-    refetch: () => Promise.all(queries.map((query) => query.refetch())),
+    isLoading: queries.some(query => query.isLoading),
+    isFetching: queries.some(query => query.isFetching),
+    isError: queries.some(query => query.isError),
+    error: queries.find(query => query.error)?.error,
+    refetch: () => Promise.all(queries.map(query => query.refetch())),
   };
 }

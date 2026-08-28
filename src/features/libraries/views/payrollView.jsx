@@ -8,7 +8,7 @@ import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
 
-export function PayrollView({ data, onNotice, mutations, selectedLibrary }) {
+export default function PayrollView({ data, onNotice, mutations, selectedLibrary }) {
   const [query, setQuery] = useState("");
   const shown = data.payroll.filter(record =>
     `${record.staffName} ${record.role}`

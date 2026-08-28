@@ -10,7 +10,7 @@ import TableEmpty from "../components/tableEmpty.jsx";
 import BookForm from "../components/forms/bookForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
 
-export function BooksView({ data, onNotice, mutations, selectedLibrary }) {
+export default function BooksView({ data, onNotice, mutations, selectedLibrary }) {
   const [query, setQuery] = useState("");
   const [genre, setGenre] = useState("all");
   const [condition, setCondition] = useState("all");

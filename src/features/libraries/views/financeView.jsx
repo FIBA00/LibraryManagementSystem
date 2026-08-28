@@ -7,7 +7,7 @@ import SysPanel from "../components/panel.jsx";
 import { money, SlimMetrics } from "../lib/utils.js";
 import { TransactionForm } from "../components/forms/transactionForm.jsx";
 
-export function FinancesView({
+export default function FinancesView({
   data,
   onNotice,
   mutations,

@@ -11,7 +11,7 @@ import { ActionMenu } from "../components/actionMenu.jsx";
 import { RentalForm } from "../components/forms/rentalForm.jsx";
 import { Busy, SlimMetrics, withNotice } from "../lib/utils.js";
 
-export function RentalsView({
+export default function RentalsView({
   data,
   onNotice,
   mutations,

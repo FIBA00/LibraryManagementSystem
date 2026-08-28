@@ -10,7 +10,7 @@ import UserForm from "../components/forms/userForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
 import { money, SlimMetrics, withNotice } from "../lib/utils.js";
 
-export function StaffView({ data, onNotice, mutations, selectedLibrary }) {
+export default function StaffView({ data, onNotice, mutations, selectedLibrary }) {
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("all");
   const [status, setStatus] = useState("all");

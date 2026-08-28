@@ -13,7 +13,7 @@ import StatusPill from "../components/statusPill.jsx";
 import ActionMenu from "../components/actionMenu.jsx";
 import SysPanel from "../components/panel.jsx";
 
-export function AttendanceView({ data, onNotice, mutations, selectedLibrary }) {
+export default function AttendanceView({ data, onNotice, mutations, selectedLibrary }) {
   const [date, setDate] = useState("2026-08-27");
   const count = status =>
     data.attendance.filter(record => record.status === status).length;
