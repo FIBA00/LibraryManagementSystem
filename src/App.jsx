@@ -13,7 +13,7 @@ import UnauthorizedPage from "./pages/unauthorized.jsx";
 import NavBar from "./components/navbar.jsx";
 import Footer from "./components/footer.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
-
+import CustomToaster from "./components/sonner.jsx";
 // ----------------features---------------------------------------------
 // auth
 import LoginPage from "./features/auth/pages/login.jsx";
@@ -27,9 +27,7 @@ import LibraryOwnerProfilePage from "./features/auth/pages/owner.jsx";
 import OwnerLayout from "./features/libraries/layout/ownerLayout.jsx";
 import LibraryDashboardPage from "./features/libraries/pages/libraryDashboard.jsx";
 
-
-
-// admin 
+// admin
 import AdminLayout from "./features/admin/layout/admin.layout.js";
 import AdminManageLibraries from "./features/admin/pages/adminDashboard.jsx";
 
@@ -41,83 +39,72 @@ import AdminReportsPage from "./features/admin/pages/adminReports.jsx";
 import LibraryCreatePage from "./features/libraries/pages/libraryCreate.jsx";
 
 export default function App() {
-	const location = useLocation();
-	const isProfileRoute = location.pathname.startsWith("/reader") || location.pathname.startsWith("/owner") || location.pathname.startsWith("/admin");
+  const location = useLocation();
+  const isProfileRoute =
+    location.pathname.startsWith("/reader") ||
+    location.pathname.startsWith("/owner") ||
+    location.pathname.startsWith("/admin");
 
-	return (
-		<div>
-			<Toaster position="top-center" />
-			{!isProfileRoute &&
-				<NavBar />
+  return (
+    <>
+      <Toaster position="top-center" />
+      {!isProfileRoute && <NavBar />}
+      <Routes>
+        {/* essential pages */}
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/libraries" element={<Libraries />} />
+        <Route path="/forlibraries" element={<ForLibraries />} />
 
-			}
-			<Routes>
-				{/* essential pages */}
-				<Route path="/" element={<Home />} />
-				<Route path="/books" element={<Books />} />
-				<Route path="/libraries" element={<Libraries />} />
-				<Route path="/forlibraries" element={<ForLibraries />} />
+        {/* Auth pages */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<SignupPage />} />
+        </Route>
 
-				{/* Auth pages */}
-				<Route element={<AuthLayout />}>
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/register" element={<SignupPage />} />
-				</Route>
+        {/* Reader routes */}
+        <Route element={<ProtectedRoute allowedRoles={["reader"]} />}>
+          <Route element={<ProfileLayout />}>
+            <Route path="/reader" element={<ReaderProfilePage />} />
+          </Route>
+        </Route>
 
-				{/* Reader routes */}
-				<Route element={<ProtectedRoute allowedRoles={[ "reader" ]} />}>
-					<Route element={<ProfileLayout />}>
-						<Route path="/reader" element={<ReaderProfilePage />} />
-					</Route>
-				</Route>
+        {/* Owner routes */}
+        <Route element={<ProtectedRoute allowedRoles={["owner"]} />}>
+          <Route element={<ProfileLayout />}>
+            <Route path="/owner" element={<LibraryOwnerProfilePage />} />
+          </Route>
+        </Route>
 
+        {/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
+        <Route element={<OwnerLayout />}>
+          <Route path="/owner/library" element={<LibraryDashboardPage />} />
 
-				{/* Owner routes */}
-				<Route element={<ProtectedRoute allowedRoles={[ "owner" ]} />}>
-					<Route element={<ProfileLayout />}>
-						<Route
-							path="/owner"
-							element={<LibraryOwnerProfilePage />}
-						/>
-					</Route>
-				</Route>
+          <Route path="/owner/library/create" element={<LibraryCreatePage />} />
+        </Route>
+        {/* </Routes> */}
 
-				{/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
-				<Route element={<OwnerLayout />} >
-					<Route path="/owner/library"
-						element={<LibraryDashboardPage />}
-					/>
+        {/* admin related */}
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+          <Route element={<AdminLayout />}>
+            <Route path="/admin/" element={<AdminOverviewPage />} />
+            <Route path="/admin/libraries" element={<AdminManageLibraries />} />
+            <Route path="/admin/users" element={<AdminManageUsers />} />
 
-					<Route path="/owner/library/create" element={<LibraryCreatePage />}
-					/>
-				</Route>
-				{/* </Routes> */}
+            <Route
+              path="/admin/libraries/:id"
+              element={<AdminLibraryDetailsPage />}
+            />
+            <Route path="/admin/settings" element={<AdminSettingsPage />} />
+            <Route path="/admin/reports" element={<AdminReportsPage />} />
+          </Route>
+        </Route>
 
-				{/* admin related */}
-				<Route element={<ProtectedRoute allowedRoles={[ "admin" ]} />}>
-					<Route element={<AdminLayout />}>
-						<Route path="/admin/" element={<AdminOverviewPage />} />
-						<Route path="/admin/libraries" element={<AdminManageLibraries />} />
-						<Route path="/admin/users" element={<AdminManageUsers />} />
+        <Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
+      </Routes>
 
-						<Route path="/admin/libraries/:id" element={<AdminLibraryDetailsPage />} />
-						<Route path="/admin/settings" element={<AdminSettingsPage />} />
-						<Route path="/admin/reports" element={<AdminReportsPage />} />
-
-
-					</Route>
-				</Route>
-
-
-				<Route path="/unauthorized" element={<UnauthorizedPage />}></Route>
-
-
-
-			</Routes>
-
-			{!isProfileRoute &&
-				<Footer />
-			}
-		</div>
-	);
+      {!isProfileRoute && <Footer />}
+      <CustomToaster position="bottom-right" richColors closeButton />
+    </>
+  );
 }
