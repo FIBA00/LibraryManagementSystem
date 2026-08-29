@@ -3,7 +3,7 @@ import { ListFilter, Plus } from "lucide-react";
 import { useState } from "react";
 
 // ! internal imports
-
+// components
 import { withNotice } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
@@ -15,18 +15,32 @@ import SlimMetrics from "../components/slimMetrics.jsx";
 import Busy from "../components/busyBadge.jsx";
 import Button from "../components/button.jsx";
 
-export default function LibrariesView({ data, onNotice, mutations }) {
+// hooks
+import useAppSettings from "../hooks/useAppSettings.js";
+import useLibraryDashboardQuery from "../hooks/useLibraryDashboardQuery.js";
+import useLibraryMutations from "../hooks/useLibraryMutations.js";
+
+export default function LibrariesView({ onNotice }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("all");
   const [libraryFormOpen, setLibraryFormOpen] = useState(false);
 
-  const shown = data.libraries.filter(
-    library =>
+  // TODO: get the library from the params
+  const [selectedLibraryId, setSelectedLibraryId] = useState(null);
+  const { libraries, data, isLoading, isError, refetch } =
+    useLibraryDashboardQuery(selectedLibraryId);
+  const selectedLibrary =
+    libraries.find(library => library.id === selectedLibraryId) || null;
+  const mutations = useLibraryMutations();
+
+  const shown = data.libraries.filter(function handleLibraries(library) {
+    return (
       (status === "all" || library.status === status) &&
       `${library.name} ${library.city} ${library.branch}`
         .toLowerCase()
         .includes(query.toLowerCase())
-  );
+    );
+  });
 
   function createLibrary(values, callbacks = {}) {
     mutations.createLibrary.mutate(values, {

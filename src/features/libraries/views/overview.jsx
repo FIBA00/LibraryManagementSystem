@@ -10,26 +10,32 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 // ! internal imports
+// components
 import MetricCard from "../components/metricCard.jsx";
 import SysPanel from "../components/panel.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import ActionMenu from "../components/actionMenu.jsx";
 import Button from "../components/button.jsx";
+import { money } from "../../../lib/utils.js";
 
+// hooks
+import useAppSettings from "../hooks/useAppSettings.js";
+import useLibraryDashboardQuery from "../hooks/useLibraryDashboardQuery.js";
+import useLibraryMutations from "../hooks/useLibraryMutations.js";
 
-export default function Overview({
-  data,
-  selectedLibrary,
-  onViewChange,
-  onNotice,
-}) {
-  const money = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  });
+import { Link } from "react-router-dom";
+
+export default function Overview({ onNotice }) {
+  // TODO: get the library id from the params
+  const [selectedLibraryId, setSelectedLibraryId] = useState(null);
+  const { libraries, data, isLoading, isError, refetch } =
+    useLibraryDashboardQuery(selectedLibraryId);
+  const selectedLibrary =
+    libraries.find(library => library.id === selectedLibraryId) || null;
+  const mutations = useLibraryMutations();
   const totalMembers = data.libraries.reduce(
     (sum, library) => sum + library.members,
     0
@@ -37,9 +43,11 @@ export default function Overview({
   const totalBooks = data.books.length
     ? data.books.reduce((sum, book) => sum + book.totalCopies, 0)
     : data.libraries.reduce((sum, library) => sum + library.totalBooks, 0);
+
   const totalIncome = data.transactions
     .filter(transaction => transaction.type === "income")
     .reduce((sum, transaction) => sum + transaction.amount, 0);
+
   const totalExpenses = data.transactions
     .filter(transaction => transaction.type === "expense")
     .reduce((sum, transaction) => sum + transaction.amount, 0);
@@ -64,21 +72,22 @@ export default function Overview({
             loan records need attention before closing.
           </p>
           <div className="brief-actions">
-            <Button
-              variant="primary"
-              onClick={() => onViewChange("rentals")}
-            >
-              Review loan desk <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="quiet"
-              onClick={() => onViewChange("books")}
-            >
-              Browse catalog
-            </Button>
+            {/* TODO: implement real path , in the app.jsx and get the library id from params. */}
+            <Link to="/library/selectedLibrary/rentals">
+              <Button variant="primary">
+                Review loan desk <ChevronRight size={16} />
+              </Button>
+            </Link>
+
+            <Link to="/library/selectedLibrary/books">
+              <Button variant="quiet">
+                Browse catalog <ChevronRight size={16} />
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="brief-image">
+          {/* TODO: Change this image source */}
           <img
             src="/manus-storage/library-reading-room_6b89c355.jpg"
             alt="A quiet contemporary library reading room"
@@ -124,16 +133,17 @@ export default function Overview({
         />
       </div>
       <div className="overview-main-grid">
+        {/* TODO: implement real path , in the app.jsx and get the library id from params. */}
+
         <SysPanel
           title="Library branches"
           meta={`${data.libraries.length} in this view`}
           action={
-            <Button
-              className="text"
-              onClick={() => onViewChange("libraries")}
-            >
-              See branches <ChevronRight size={15} />
-            </Button>
+            <Link to="/library/selectedLibrary/branchs">
+              <Button variant="text">
+                See branches <ChevronRight size={15} />
+              </Button>
+            </Link>
           }
         >
           <div className="branch-list">
@@ -179,11 +189,13 @@ export default function Overview({
                   <b>+${rental.fineAmount.toFixed(2)}</b>
                 </div>
               ))}
-              <Button 
-                variant="primary" 
-                onClick={() => onViewChange("rentals")}>
-                Open rentals desk <ChevronRight size={15} />
-              </Button>
+
+              {/* TODO: implement real path , in the app.jsx and get the library id from params. */}
+              <Link to="/library/selectedLibrary/rentals">
+                <Button variant="primary">
+                  Open rentals desk <ChevronRight size={15} />
+                </Button>
+              </Link>
             </section>
           ) : null}
           <SysPanel
@@ -196,7 +208,13 @@ export default function Overview({
                   {
                     label: "Open loan desk",
                     icon: LibraryBig,
-                    onSelect: () => onViewChange("rentals"),
+                    onSelect: () => {
+                      <Link to="/library/selectedLibrary/rentals">
+                        <Button variant="primary">
+                          Open loan desk <ChevronRight size={15} />
+                        </Button>
+                      </Link>;
+                    },
                   },
                   {
                     label: "Copy activity reference",
@@ -243,9 +261,11 @@ export default function Overview({
         title="Staff on duty"
         meta={`${onDuty.length} colleagues active today`}
         action={
-          <Button variant="text" onClick={() => onViewChange("staff")}>
-            View directory <ChevronRight size={15} />
-          </Button>
+          <Link to="/library/selectedLibrary/staff">
+            <Button variant="primary">
+              View directory <ChevronRight size={15} />
+            </Button>
+          </Link>
         }
       >
         <div className="staff-on-duty">

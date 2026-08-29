@@ -16,10 +16,12 @@ export default function useLibraryDashboardQuery(libraryId) {
     queryKey: ["libraries"],
     queryFn: () => libraryApi.getLibraries(),
   });
+
   const monthlyQuery = useQuery({
     queryKey: ["analytics", "monthly"],
     queryFn: () => libraryApi.getMonthlyData(),
   });
+  
   const resourceQueries = useQueries({
     queries: resourceDefinitions.map(([resource, queryFn]) => ({
       queryKey: [resource, { libraryId: libraryId || "all" }],

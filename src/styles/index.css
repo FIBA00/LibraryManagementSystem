@@ -84,20 +84,12 @@ body
   background: var(--color-background);
 }
 
-button,
 input,
 select
 {
   font: inherit;
 }
 
-button
-{
-  border: 0;
-  cursor: pointer;
-}
-
-button:focus-visible,
 input:focus-visible,
 select:focus-visible
 {
@@ -305,9 +297,6 @@ select:focus-visible
 }
 
 .nav-item:active,
-.primary-button:active,
-.secondary-button:active,
-.quiet-button:active
 {
   transform: scale(.97);
 }
@@ -558,7 +547,7 @@ select:focus-visible
   padding: 3px 7px 6px;
 }
 
-.branch-menu button
+.branch-menu
 {
   width: 100%;
   padding: 8px;
@@ -572,12 +561,12 @@ select:focus-visible
   text-align: left;
 }
 
-.branch-menu button:hover
+.branch-menu
 {
   background: #f7f3ec;
 }
 
-.branch-menu button.is-selected
+.branch-menu
 {
   color: #2457d6;
   background: #edf2ff;
@@ -598,7 +587,7 @@ select:focus-visible
   border: 3px solid #2457d6;
 }
 
-.branch-menu button span
+.branch-menu span
 {
   min-width: 0;
   display: flex;
@@ -631,7 +620,6 @@ select:focus-visible
   font-weight: 800;
 }
 
-.notification-button,
 .icon-action,
 .row-more
 {
@@ -643,13 +631,7 @@ select:focus-visible
   border-radius: 7px;
 }
 
-.notification-button
-{
-  width: 34px;
-  height: 34px;
-}
 
-.notification-button:hover,
 .icon-action:hover,
 .row-more:hover
 {
@@ -657,17 +639,7 @@ select:focus-visible
   background: #edf2ff;
 }
 
-.notification-button i
-{
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  background: #db2626;
-  border: 1.5px solid #fffdf5;
-  border-radius: 50%;
-}
+
 
 .profile-top
 {
@@ -780,77 +752,8 @@ select:focus-visible
   gap: 9px;
 }
 
-.primary-button,
-.secondary-button,
-.quiet-button,
-.text-action,
-.row-action
-{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: transform 160ms cubic-bezier(.23, 1, .32, 1), background 160ms cubic-bezier(.23, 1, .32, 1), box-shadow 160ms cubic-bezier(.23, 1, .32, 1), color 160ms cubic-bezier(.23, 1, .32, 1);
-}
 
-.primary-button
-{
-  padding: 10px 13px;
-  color: #fff;
-  background: #2457d6;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(36, 87, 214, .2);
-  font-size: 12px;
-  font-weight: 800;
-}
 
-.primary-button:hover
-{
-  background: #1e49b8;
-  box-shadow: 0 8px 18px rgba(36, 87, 214, .28);
-  transform: translateY(-1px);
-}
-
-.primary-button.compact,
-.secondary-button.compact
-{
-  padding: 8px 10px;
-  font-size: 11px;
-}
-
-.quiet-button
-{
-  padding: 10px 12px;
-  color: #f2e9dc;
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .12);
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.quiet-button:hover
-{
-  background: rgba(255, 255, 255, .14);
-}
-
-.secondary-button
-{
-  padding: 10px 13px;
-  color: #5c4d3e;
-  background: #fffdf9;
-  border: 1px solid #dfd5c7;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 750;
-}
-
-.secondary-button:hover
-{
-  color: #2457d6;
-  background: #edf2ff;
-  border-color: #adc0ec;
-}
 
 .brief-image
 {
@@ -1283,7 +1186,7 @@ select:focus-visible
   font-size: 10px;
 }
 
-.overdue-card > button
+.overdue-card
 {
   margin-top: 9px;
   padding: 0;
@@ -1296,7 +1199,7 @@ select:focus-visible
   font-weight: 800;
 }
 
-.overdue-card > button:hover
+.overdue-card
 {
   color: #ffca73;
 }
@@ -1772,7 +1675,7 @@ select:focus-visible
   border-radius: 7px;
 }
 
-.view-toggle button
+.view-toggle
 {
   padding: 5px 8px;
   color: #847363;
@@ -2331,7 +2234,6 @@ select:focus-visible
 
   .page-kicker,
   .top-search,
-  .notification-button,
   .profile-top
   {
     display: none;
@@ -2433,13 +2335,12 @@ select:focus-visible
     gap: 4px;
   }
 
-  .heading-actions .secondary-button,
-  .heading-actions .primary-button
+  .heading-actions .heading-actions
   {
     padding: 7px;
   }
 
-  .heading-actions .secondary-button
+  .heading-actions
   {
     font-size: 0;
   }

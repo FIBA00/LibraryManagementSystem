@@ -16,14 +16,25 @@ import { parseDate } from "../../../lib/utils.js";
 import StatusPill from "../components/statusPill.jsx";
 import Button from "../components/button.jsx";
 
-export default function MemberProfile({
-  memberName,
-  data,
-  onViewChange,
-  onDownloadRentalReceipt,
-}) {
+
+// hooks
+import useAppSettings from "../hooks/useAppSettings.js";
+import useLibraryDashboardQuery from "../hooks/useLibraryDashboardQuery.js";
+import useLibraryMutations from "../hooks/useLibraryMutations.js";
+
+export default function MemberProfile({memberName,onDownloadRentalReceipt,}) {
   const [status, setStatus] = useState("all");
   const [sort, setSort] = useState("newest");
+  
+  // TODO: get the library from the params
+  const [selectedLibraryId, setSelectedLibraryId] = useState(null);
+  const { libraries, data, isLoading, isError, refetch } =
+    useLibraryDashboardQuery(selectedLibraryId);
+  const selectedLibrary =
+    libraries.find(library => library.id === selectedLibraryId) || null;
+  const mutations = useLibraryMutations();
+
+  
   const history = data.rentals.filter(
     rental => rental.memberName === memberName
   );
