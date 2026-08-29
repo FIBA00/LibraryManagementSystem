@@ -8,47 +8,39 @@ import StaffView from "../views/staffView.jsx";
 import FinancesView from "../views/financeView.jsx";
 import PayrollView from "../views/payrollView.jsx";
 import AttendanceView from "../views/attendanceView.jsx";
-import SettingsView from "../views/settingsView.jsx";
 import MemberProfile from "../views/memberProfile.jsx";
+import SettingsView from "../views/settingsView.jsx";
 
 function OverviewRoute() {
-  const context = useOutletContext();
-  return <Overview {...context} />;
+  return <Overview {...useOutletContext()} />;
 }
 
 function LibrariesRoute() {
-  const context = useOutletContext();
-  return <LibrariesView {...context} />;
+  return <LibrariesView {...useOutletContext()} />;
 }
 
 function BooksRoute() {
-  const context = useOutletContext();
-  return <BooksView {...context} />;
+  return <BooksView {...useOutletContext()} />;
 }
 
 function RentalsRoute() {
-  const context = useOutletContext();
-  return <RentalsView {...context} />;
+  return <RentalsView {...useOutletContext()} />;
 }
 
 function StaffRoute() {
-  const context = useOutletContext();
-  return <StaffView {...context} />;
+  return <StaffView {...useOutletContext()} />;
 }
 
 function FinancesRoute() {
-  const context = useOutletContext();
-  return <FinancesView {...context} />;
+  return <FinancesView {...useOutletContext()} />;
 }
 
 function PayrollRoute() {
-  const context = useOutletContext();
-  return <PayrollView {...context} />;
+  return <PayrollView {...useOutletContext()} />;
 }
 
 function AttendanceRoute() {
-  const context = useOutletContext();
-  return <AttendanceView {...context} />;
+  return <AttendanceView {...useOutletContext()} />;
 }
 
 function MemberRoute() {

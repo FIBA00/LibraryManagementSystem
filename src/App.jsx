@@ -37,7 +37,7 @@ import {
   AttendanceRoute,
   MemberRoute,
   SettingsRoute,
-} from "./features/libraries/routes/libraryRoutes.jsx";
+} from "./features/libraries/pages/libraryRoutes.jsx";
 
 // admin
 import AdminLayout from "./features/admin/layout/admin.layout.js";

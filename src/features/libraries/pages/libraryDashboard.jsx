@@ -133,8 +133,9 @@ export default function LibraryDashboardPage() {
   const outletContext = {
     data,
     selectedLibrary,
-    mutations,
+    onViewChange: handleViewChange,
     onNotice: showNotice,
+    mutations,
     onMemberSelect: openMember,
     onDownloadRentalReceipt: receiptForRental,
     onDownloadTransactionReceipt: receiptForTransaction,
@@ -177,7 +178,7 @@ export default function LibraryDashboardPage() {
           ) : isError ? (
             <ErrorState retry={refetch} />
           ) : (
-            <Outlet context={{ outletContext }} />
+            <Outlet context={ outletContext } />
           )}
         </main>
       </div>
