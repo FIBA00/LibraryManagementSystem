@@ -4,6 +4,7 @@ import { useState } from "react";
 
 // ! internal imports
 
+import { withNotice } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
@@ -12,7 +13,7 @@ import PlanBadge from "../components/planBadge.jsx";
 import LibraryForm from "../components/forms/libraryForm.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
 import Busy from "../components/busyBadge.jsx";
-import { withNotice } from "../../../lib/utils.js";
+import Button from "../components/button.jsx";
 
 export default function LibrariesView({ data, onNotice, mutations }) {
   const [query, setQuery] = useState("");
@@ -68,12 +69,13 @@ export default function LibrariesView({ data, onNotice, mutations }) {
         title="Branch register"
         meta="Location, membership, plan, and operational status."
         action={
-          <button
-            className="primary-button compact"
+          <Button
+            variant="primary"
+            compact
             onClick={() => setLibraryFormOpen(true)}
           >
             <Plus size={16} /> Add library
-          </button>
+          </Button>
         }
       >
         <div className="table-toolbar">
@@ -130,14 +132,14 @@ export default function LibrariesView({ data, onNotice, mutations }) {
                     <StatusPill status={library.status} />
                   </td>
                   <td>
-                    <button
-                      className="row-action"
+                    <Button
+                      variant="row"
                       onClick={() => toggleStatus(library)}
                       disabled={mutations.updateLibrary.isPending}
                     >
                       <Busy active={mutations.updateLibrary.isPending} />
                       {library.status === "maintenance" ? "Reopen" : "Pause"}
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}

@@ -8,6 +8,8 @@ import SearchBox from "../components/searchBox.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import TableEmpty from "../components/tableEmpty.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
+import Button from "../components/button.jsx";
+
 
 export default function PayrollView({ data, onNotice, mutations, selectedLibrary }) {
   const [query, setQuery] = useState("");
@@ -47,8 +49,9 @@ export default function PayrollView({ data, onNotice, mutations, selectedLibrary
         meta="Monthly record by staff member, department, and payment state."
         action={
           <div className="heading-actions">
-            <button
-              className="secondary-button compact"
+            <Button
+              variant="secondary"
+               compact
               onClick={() =>
                 onNotice(
                   "Export is intentionally a placeholder until a backend generates the file."
@@ -56,9 +59,9 @@ export default function PayrollView({ data, onNotice, mutations, selectedLibrary
               }
             >
               <Download size={15} /> Export
-            </button>
-            <button
-              className="primary-button compact"
+            </Button>
+            <Button
+              variant="primary-Button compact"
               onClick={processCurrentPayroll}
               disabled={mutations.processPayroll.isPending}
             >
@@ -66,7 +69,7 @@ export default function PayrollView({ data, onNotice, mutations, selectedLibrary
               {mutations.processPayroll.isPending
                 ? "Processing…"
                 : "Process payroll"}
-            </button>
+            </Button>
           </div>
         }
       >

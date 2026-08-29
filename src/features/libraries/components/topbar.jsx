@@ -12,6 +12,9 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+// ! internal imports
+import Button from "./button.jsx";
+
 const titles = {
   overview: [
     "Today’s reading room",
@@ -85,29 +88,31 @@ export default function TopBar({
   return (
     <header className="topbar">
       <div className="topbar-title-wrap">
-        <button
-          className="mobile-menu"
+        <Button
+          variant="icon"
           onClick={onMenu}
           aria-label="Open navigation"
         >
           <Menu size={20} />
-        </button>
+        </Button>
         <div>
           <p className="page-kicker">LibraCore / {activeView}</p>
           <h1>{title}</h1>
         </div>
       </div>
       <div className="topbar-actions">
-        <button
-          className="top-search"
+        <Button
+          variant="icon"
           aria-label="Search all library records"
           onClick={onSearch}
         >
           <Search size={16} />
           <span>Search all records</span>
           <kbd>⌘ K</kbd>
-        </button>
+        </Button>
         <div className="branch-picker" ref={picker}>
+
+          {/* TODO: change to variant based on the is-open */}
           <button
             className={`branch-trigger ${open ? "is-open" : ""}`}
             onClick={() => {
@@ -160,8 +165,8 @@ export default function TopBar({
         </div>
 
         <div className="activity-picker" ref={activityMenu}>
-          <button
-            className="notification-button"
+          <Button
+            variant="icon"
             aria-label="Open activity feed"
             aria-expanded={activityOpen}
             onClick={() => {
@@ -172,7 +177,7 @@ export default function TopBar({
             <Bell size={18} />
 
             {unreadCount ? <i /> : null}
-          </button>
+          </Button>
 
           {activityOpen ? (
             <div className="activity-menu">
@@ -181,9 +186,9 @@ export default function TopBar({
                   <small>Library activity</small>
                   <strong>Desk ledger</strong>
                 </span>
-                <button onClick={onMarkActivitiesRead} disabled={!unreadCount}>
+                <Button variant="icon" onClick={onMarkActivitiesRead} disabled={!unreadCount}>
                   <CheckCheck size={15} /> Mark read
-                </button>
+                </Button>
               </div>
 
               <div className="activity-list">

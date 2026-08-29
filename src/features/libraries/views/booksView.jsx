@@ -11,6 +11,7 @@ import BookForm from "../components/forms/bookForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
 import Busy from "../components/busyBadge.jsx";
+import Button from "../components/button.jsx";
 
 export default function BooksView({
   data,
@@ -110,15 +111,16 @@ export default function BooksView({
         title="Collection register"
         meta={`${shown.length} records match the current discovery filters.`}
         action={
-          <button
-            className="primary-button compact"
+          <Button
+            variant="primary"
+            compact
             onClick={() => {
               setEditingBook(null);
               setBookFormOpen(true);
             }}
           >
             <BookPlus size={16} /> Add book
-          </button>
+          </Button>
         }
       >
         <div className="table-toolbar wrap record-discovery-bar">
@@ -213,28 +215,29 @@ export default function BooksView({
 
                     <td>
                       <span className="row-actions">
-                        <button
-                          className="row-action"
+                        <Button
+                          variant="row"
                           onClick={() => restockBook(book)}
                           disabled={mutations.updateBook.isPending}
                         >
                           <Busy active={mutations.updateBook.isPending} />{" "}
                           Restock
-                        </button>
-                        <button
-                          className="row-icon-action"
+                        </Button>
+                        <Button
+                          variant="icon"
                           onClick={() => openEdit(book)}
                           aria-label={`Edit ${book.title}`}
                         >
                           <Pencil size={15} />
-                        </button>
-                        <button
-                          className="row-icon-action danger"
+                        </Button>
+                        <Button
+                          variant="icon"
+                          danger
                           onClick={() => setDeletingBook(book)}
                           aria-label={`Delete ${book.title}`}
                         >
                           <Trash2 size={15} />
-                        </button>
+                        </Button>
                       </span>
                     </td>
                   </tr>

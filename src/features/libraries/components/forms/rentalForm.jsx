@@ -16,6 +16,8 @@ import Field from "../field.jsx";
 import FormSubmit from "../formSubmit.jsx";
 import BranchOptions from "../branchOptions.jsx";
 import rentalSchema from "../../schemas/rental.schema.js";
+import Button from "../button.jsx";
+
 
 function defaultRental(libraryId) {
   return {
@@ -132,14 +134,14 @@ export default function RentalForm({
             </Field>
           </div>
           <DialogFooter className="entity-footer">
-            <button
+            <Button
               type="button"
-              className="secondary-button"
+              variant="secondary"
               onClick={() => onOpenChange(false)}
               disabled={pending}
             >
               Cancel
-            </button>
+            </Button>
             <FormSubmit pending={pending} label="Open rental" />
           </DialogFooter>
         </form>

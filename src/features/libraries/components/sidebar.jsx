@@ -13,6 +13,9 @@ import {
   X,
 } from "lucide-react";
 
+// ! internal imports
+import Button from "./button.jsx";
+
 const navItems = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "libraries", label: "Libraries", icon: Building2 },
@@ -50,13 +53,9 @@ export default function Sidebar({
           <strong>CORE</strong>
           <small>Catalogue operations · 01</small>
         </div>
-        <button
-          className="sidebar-close"
-          onClick={onClose}
-          aria-label="Close navigation"
-        >
+        <Button variant="icon" onClick={onClose} aria-label="Close navigation">
           <X size={19} />
-        </button>
+        </Button>
       </div>
       <nav className="sidebar-nav">
         <p className="nav-label">Workspace</p>
@@ -64,20 +63,23 @@ export default function Sidebar({
           <span>LC / SYSTEM 01</span>
           <i />
         </div>
-        {navItems.map(({ id, label, icon: Icon, count }) => (
-          <button
-            key={id}
-            className={`nav-item ${activeView === id ? "is-active" : ""}`}
-            onClick={() => {
-              onViewChange(id);
-              onClose();
-            }}
-          >
-            <Icon size={18} strokeWidth={1.8} />
-            <span>{label}</span>
-            {count ? <b className="nav-count">{count}</b> : null}
-          </button>
-        ))}
+        {navItems.map(function handleItems({ id, label, icon: Icon, count }) {
+          return (
+            // todo: change to variant based on is-active
+            <button
+              key={id}
+              className={`nav-item ${activeView === id ? "is-active" : ""}`}
+              onClick={() => {
+                onViewChange(id);
+                onClose();
+              }}
+            >
+              <Icon size={18} strokeWidth={1.8} />
+              <span>{label}</span>
+              {count ? <b className="nav-count">{count}</b> : null}
+            </button>
+          );
+        })}
       </nav>
       <div className="sidebar-footer">
         <button
@@ -91,14 +93,17 @@ export default function Sidebar({
           <span>Settings</span>
           <ChevronLeft className="settings-chev" size={16} />
         </button>
+
         <div className="profile-mini">
           <span className="profile-avatar">
+            
             {settings?.operatorName
               ?.split(" ")
               .map(part => part[0])
               .join("")
               .slice(0, 2) || "JD"}
           </span>
+
           <div>
             <strong>{settings?.operatorName || "James Davidson"}</strong>
             <small>System administrator</small>

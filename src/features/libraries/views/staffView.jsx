@@ -10,6 +10,7 @@ import TableEmpty from "../components/tableEmpty.jsx";
 import UserForm from "../components/forms/userForm.jsx";
 import DeleteConfirmation from "../components/deleteConfirm.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
+import Button from "../components/button.jsx";
 
 export default function StaffView({
   data,
@@ -107,15 +108,16 @@ export default function StaffView({
         title="People and roles"
         meta={`${shown.length} users match the current discovery filters.`}
         action={
-          <button
-            className="primary-button compact"
+          <Button
+            variant="primary"
+            compact
             onClick={() => {
               setEditingUser(null);
               setUserFormOpen(true);
             }}
           >
             <Plus size={16} /> Add user
-          </button>
+          </Button>
         }
       >
         <div className="table-toolbar wrap record-discovery-bar">
@@ -151,6 +153,7 @@ export default function StaffView({
             </select>
           </label>
           <div className="view-toggle">
+            {/* TODO: add variant baed on activity */}
             <button
               className={mode === "cards" ? "is-active" : ""}
               onClick={() => setMode("cards")}
@@ -183,18 +186,16 @@ export default function StaffView({
                 <div>
                   <span>{staff.department}</span>
                   <span className="card-record-actions">
-                    <button
-                      className="inline-button"
-                      onClick={() => openEdit(staff)}
-                    >
+                    <Button variant="primary" onClick={() => openEdit(staff)}>
                       <Pencil size={12} /> Edit
-                    </button>
-                    <button
-                      className="inline-button danger"
+                    </Button>
+                    <Button
+                      className="primary"
+                      danger
                       onClick={() => setDeletingUser(staff)}
                     >
                       <Trash2 size={12} /> Delete
-                    </button>
+                    </Button>
                   </span>
                 </div>
               </article>
@@ -241,27 +242,28 @@ export default function StaffView({
                       </td>
                       <td>
                         <span className="row-actions">
-                          <button
-                            className="row-action"
+                          <Button
+                            variant="row"
                             onClick={() => toggleStaffStatus(staff)}
                             disabled={mutations.updateStaffMember.isPending}
                           >
                             {staff.status === "active" ? "Leave" : "Activate"}
-                          </button>
-                          <button
-                            className="row-icon-action"
+                          </Button>
+                          <Button
+                            variant="icon"
                             onClick={() => openEdit(staff)}
                             aria-label={`Edit ${staff.name}`}
                           >
                             <Pencil size={15} />
-                          </button>
-                          <button
-                            className="row-icon-action danger"
+                          </Button>
+                          <Button
+                            variant="icon"
+                            danger
                             onClick={() => setDeletingUser(staff)}
                             aria-label={`Delete ${staff.name}`}
                           >
                             <Trash2 size={15} />
-                          </button>
+                          </Button>
                         </span>
                       </td>
                     </tr>

@@ -9,6 +9,8 @@ import ErrorState from "../components/errorState.jsx";
 import Sidebar from "../components/sidebar.jsx";
 import TopBar from "../components/topbar.jsx";
 import GlobalSearch from "../components/globalSearch.jsx";
+import Button from "../components/button.jsx";
+
 
 // hooks
 import useAppSettings from "../hooks/useAppSettings.js";
@@ -183,8 +185,8 @@ export default function LibraryDashboardPage() {
         </main>
       </div>
       {isMenuOpen ? (
-        <button
-          className="sidebar-backdrop"
+        <Button
+          variant="icon"
           onClick={() => setMenuOpen(false)}
           aria-label="Close navigation"
         />

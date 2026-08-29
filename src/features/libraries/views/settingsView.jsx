@@ -9,6 +9,8 @@ import {
   UserRound,
 } from "lucide-react";
 
+// ! internal imports
+import Button from "../components/button.jsx";
 
 export default function SettingsView({
   settings,
@@ -156,18 +158,18 @@ export default function SettingsView({
         </section>
       </div>
       <div className="settings-actions">
-        <button
-          className="secondary-button"
+        <Button
+          variant="secondary"
           onClick={() => {
             onResetSettings();
             onNotice("Settings have been reset to the desk defaults.");
           }}
         >
           <RotateCcw size={15} /> Reset defaults
-        </button>
-        <button className="primary-button" onClick={save}>
+        </Button>
+        <Button variant="primary" onClick={save}>
           <Save size={15} /> Save workspace settings
-        </button>
+        </Button>
       </div>
     </div>
   );

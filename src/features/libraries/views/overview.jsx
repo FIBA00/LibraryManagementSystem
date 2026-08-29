@@ -16,6 +16,8 @@ import MetricCard from "../components/metricCard.jsx";
 import SysPanel from "../components/panel.jsx";
 import StatusPill from "../components/statusPill.jsx";
 import ActionMenu from "../components/actionMenu.jsx";
+import Button from "../components/button.jsx";
+
 
 export default function Overview({
   data,
@@ -62,18 +64,18 @@ export default function Overview({
             loan records need attention before closing.
           </p>
           <div className="brief-actions">
-            <button
-              className="primary-button"
+            <Button
+              variant="primary"
               onClick={() => onViewChange("rentals")}
             >
               Review loan desk <ChevronRight size={16} />
-            </button>
-            <button
-              className="quiet-button"
+            </Button>
+            <Button
+              variant="quiet"
               onClick={() => onViewChange("books")}
             >
               Browse catalog
-            </button>
+            </Button>
           </div>
         </div>
         <div className="brief-image">
@@ -126,12 +128,12 @@ export default function Overview({
           title="Library branches"
           meta={`${data.libraries.length} in this view`}
           action={
-            <button
-              className="text-action"
+            <Button
+              className="text"
               onClick={() => onViewChange("libraries")}
             >
               See branches <ChevronRight size={15} />
-            </button>
+            </Button>
           }
         >
           <div className="branch-list">
@@ -177,9 +179,11 @@ export default function Overview({
                   <b>+${rental.fineAmount.toFixed(2)}</b>
                 </div>
               ))}
-              <button onClick={() => onViewChange("rentals")}>
+              <Button 
+                variant="primary" 
+                onClick={() => onViewChange("rentals")}>
                 Open rentals desk <ChevronRight size={15} />
-              </button>
+              </Button>
             </section>
           ) : null}
           <SysPanel
@@ -239,9 +243,9 @@ export default function Overview({
         title="Staff on duty"
         meta={`${onDuty.length} colleagues active today`}
         action={
-          <button className="text-action" onClick={() => onViewChange("staff")}>
+          <Button variant="text" onClick={() => onViewChange("staff")}>
             View directory <ChevronRight size={15} />
-          </button>
+          </Button>
         }
       >
         <div className="staff-on-duty">

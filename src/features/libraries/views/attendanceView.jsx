@@ -15,6 +15,7 @@ import StatusPill from "../components/statusPill.jsx";
 import ActionMenu from "../components/actionMenu.jsx";
 import SysPanel from "../components/panel.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
+import Button from "../components/button.jsx";
 
 export default function AttendanceView({ data, onNotice, mutations, selectedLibrary }) {
   const [date, setDate] = useState("2026-08-27");
@@ -65,8 +66,9 @@ export default function AttendanceView({ data, onNotice, mutations, selectedLibr
                 onChange={event => setDate(event.target.value)}
               />
             </label>
-            <button
-              className="secondary-button compact"
+            <Button
+              variant="secondary"
+              compact
               onClick={() =>
                 onNotice(
                   "Export will be enabled when the connected backend can generate a file."
@@ -74,14 +76,15 @@ export default function AttendanceView({ data, onNotice, mutations, selectedLibr
               }
             >
               <Download size={15} /> Export
-            </button>
-            <button
-              className="primary-button compact"
+            </Button>
+            <Button
+              variant="primary"
+              compact
               onClick={recordCheckIn}
               disabled={mutations.createAttendanceRecord.isPending}
             >
               <Plus size={15} /> Check in
-            </button>
+            </Button>
           </div>
         }
       >

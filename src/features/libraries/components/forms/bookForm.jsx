@@ -11,12 +11,12 @@ import {
   DialogTitle,
 } from "../../../../components/dialog.jsx";
 
-// internal imports
+// ! internal imports
 import bookSchema from "../../schemas/book.schema.js";
 import Field from "../field.jsx";
 import FormSubmit from "../formSubmit.jsx";
 import BranchOptions from "../branchOptions.jsx";
-
+import Button from "../button.jsx";
 
 function defaultBook(libraryId) {
   return {
@@ -136,14 +136,14 @@ export default function BookForm({
             </Field>
           </div>
           <DialogFooter className="entity-footer">
-            <button
+            <Button
               type="button"
-              className="secondary-button"
+              variant="secondary"
               onClick={() => onOpenChange(false)}
               disabled={pending}
             >
               Cancel
-            </button>
+            </Button>
             <FormSubmit
               pending={pending}
               label={editing ? "Save revision" : "Add to catalogue"}

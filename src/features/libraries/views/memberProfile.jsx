@@ -11,9 +11,10 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 
-// internal imports
+// ! internal imports
 import { parseDate } from "../../../lib/utils.js";
 import StatusPill from "../components/statusPill.jsx";
+import Button from "../components/button.jsx";
 
 export default function MemberProfile({
   memberName,
@@ -60,21 +61,21 @@ export default function MemberProfile({
   if (!memberName || !history.length)
     return (
       <div className="page member-page">
-        <button className="text-action" onClick={() => onViewChange("rentals")}>
+        <Button variant="text" onClick={() => onViewChange("rentals")}>
           <ArrowLeft size={15} /> Back to loan desk
-        </button>
+        </Button>
         <div className="member-empty">No member record is selected.</div>
       </div>
     );
 
   return (
     <div className="page member-page">
-      <button
-        className="text-action member-back"
+      <Button
+        variant="text"
         onClick={() => onViewChange("rentals")}
       >
         <ArrowLeft size={15} /> Back to loan desk
-      </button>
+      </Button>
       <section className="member-hero">
         <div className="member-monogram">
           {memberName
@@ -192,12 +193,12 @@ export default function MemberProfile({
               </span>
               <StatusPill status={rental.status} />
               <b>{rental.fineAmount ? money.format(rental.fineAmount) : "—"}</b>
-              <button
-                className="row-action"
+              <Button
+                variant="row"
                 onClick={() => onDownloadRentalReceipt(rental)}
               >
                 Receipt
-              </button>
+              </Button>
             </article>
           ))
         ) : (

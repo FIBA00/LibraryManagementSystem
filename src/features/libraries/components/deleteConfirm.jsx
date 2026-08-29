@@ -9,6 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../../components/dialog.jsx";
+import Button from "./button.jsx";
+
 
 export default function DeleteConfirmation({
   open,
@@ -33,17 +35,17 @@ export default function DeleteConfirmation({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="entity-footer">
-          <button
+          <Button
             type="button"
-            className="secondary-button"
+            variant="secondary"
             onClick={() => onOpenChange(false)}
             disabled={pending}
           >
             Keep {recordType}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
-            className="danger-button"
+            variant="danger"
             onClick={onConfirm}
             disabled={pending}
           >
@@ -53,7 +55,7 @@ export default function DeleteConfirmation({
               <Trash2 size={16} />
             )}
             {pending ? "Deleting…" : `Delete ${recordType}`}
-          </button>
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

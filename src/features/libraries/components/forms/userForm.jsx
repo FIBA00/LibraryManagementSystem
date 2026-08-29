@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-// internal imports
+// ! internal imports
 import {
   Dialog,
   DialogContent,
@@ -16,6 +16,8 @@ import Field from "../field.jsx";
 import FormSubmit from "../formSubmit.jsx";
 import BranchOptions from "../branchOptions.jsx";
 import userSchema from "../../schemas/user.schema.js";
+import Button from "../button.jsx";
+
 
 function defaultUser(libraryId) {
   return {
@@ -139,14 +141,14 @@ export default function UserForm({
             </Field>
           </div>
           <DialogFooter className="entity-footer">
-            <button
+            <Button
               type="button"
-              className="secondary-button"
+              variant="secondary"
               onClick={() => onOpenChange(false)}
               disabled={pending}
             >
               Cancel
-            </button>
+            </Button>
             <FormSubmit
               pending={pending}
               label={editing ? "Save user" : "Create user"}

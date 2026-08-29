@@ -7,6 +7,8 @@ import { money } from "../../../lib/utils.js";
 import SysPanel from "../components/panel.jsx";
 import TransactionForm  from "../components/forms/transactionForm.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
+import Button from "../components/button.jsx";
+
 
 export default function FinancesView({
   data,
@@ -61,9 +63,9 @@ export default function FinancesView({
           title="Monthly operating trend"
           meta="Income and expenditure across the current cycle."
           action={
-            <button className="icon-action" aria-label="Finance filters">
+            <Button variant="icon" aria-label="Finance filters">
               <SlidersHorizontal size={18} />
-            </button>
+            </Button>
           }
         >
           <div className="bar-chart">
@@ -117,8 +119,9 @@ export default function FinancesView({
         meta="The newest financial records within the selected scope."
         action={
           <div className="heading-actions">
-            <button
-              className="secondary-button compact"
+            <Button
+              variant="secondary"
+              compact
               onClick={() =>
                 onNotice(
                   "Export will be enabled when the connected backend can generate a ledger file."
@@ -126,13 +129,14 @@ export default function FinancesView({
               }
             >
               <Download size={15} /> Export
-            </button>
-            <button
-              className="primary-button compact"
+            </Button>
+            <Button
+              variant="primary" 
+              compact
               onClick={() => setTransactionFormOpen(true)}
             >
               <Plus size={15} /> Add entry
-            </button>
+            </Button>
           </div>
         }
       >
@@ -170,12 +174,12 @@ export default function FinancesView({
                     {money.format(transaction.amount)}
                   </td>
                   <td>
-                    <button
-                      className="row-action"
+                    <Button
+                      variant="row"
                       onClick={() => onDownloadTransactionReceipt(transaction)}
                     >
                       Receipt
-                    </button>
+                    </Button>
                   </td>
                 </tr>
               ))}

@@ -16,6 +16,8 @@ import Field from "../field.jsx";
 import FormSubmit from "../formSubmit.jsx";
 import BranchOptions from "../branchOptions.jsx";
 import transactionSchema from "../../schemas/transaction.schema.js";
+import Button from "../button.jsx";
+
 
 function defaultTransaction(libraryId) {
   return {
@@ -109,14 +111,14 @@ export default function TransactionForm({
             </Field>
           </div>
           <DialogFooter className="entity-footer">
-            <button
+            <Button
               type="button"
-              className="secondary-button"
+              variant="secondary"
               onClick={() => onOpenChange(false)}
               disabled={pending}
             >
               Cancel
-            </button>
+            </Button>
             <FormSubmit pending={pending} label="Post to ledger" />
           </DialogFooter>
         </form>

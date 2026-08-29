@@ -11,6 +11,7 @@ import ActionMenu from "../components/actionMenu.jsx";
 import RentalForm from "../components/forms/rentalForm.jsx";
 import SlimMetrics from "../components/slimMetrics.jsx";
 import Busy from "../components/busyBadge.jsx";
+import Button from "../components/button.jsx";
 
 export default function RentalsView({
   data,
@@ -106,26 +107,32 @@ export default function RentalsView({
         title="Loan desk"
         meta="Review live circulation by patron, title, due date, and return status."
         action={
-          <button
-            className="primary-button compact"
+          <Button
+            variant="primary"
+            compact
             onClick={() => setRentalFormOpen(true)}
           >
             <Plus size={16} /> New rental
-          </button>
+          </Button>
         }
       >
         <div className="table-toolbar wrap">
           <div className="filter-tabs">
-            {["all", "active", "overdue", "returned"].map(status => (
-              <button
-                key={status}
-                onClick={() => setFilter(status)}
-                className={filter === status ? "is-active" : ""}
-              >
-                {status === "all" ? "All loans" : status}
-                <span>{count(status)}</span>
-              </button>
-            ))}
+            {["all", "active", "overdue", "returned"].map(
+              function handleStatus(status) {
+                return (
+                  // TODO: change this to variant based on status
+                  <button
+                    key={status}
+                    onClick={() => setFilter(status)}
+                    className={filter === status ? "is-active" : ""}
+                  >
+                    {status === "all" ? "All loans" : status}
+                    <span>{count(status)}</span>
+                  </button>
+                );
+              }
+            )}
           </div>
           <SearchBox
             value={query}
@@ -151,13 +158,13 @@ export default function RentalsView({
               {shown.map(rental => (
                 <tr key={rental.id}>
                   <td>
-                    <button
-                      className="member-link"
+                    <Button
+                      variant="primary"
                       onClick={() => onMemberSelect(rental.memberName)}
                     >
                       <strong>{rental.memberName}</strong>
                       <small>Open member profile</small>
-                    </button>
+                    </Button>
                   </td>
                   <td>
                     <strong className="inline-strong">
@@ -181,14 +188,14 @@ export default function RentalsView({
                     {rental.status === "active" ||
                     rental.status === "overdue" ? (
                       <span className="row-actions">
-                        <button
-                          className="row-action"
+                        <Button
+                          variant="row"
                           onClick={() => returnBook(rental)}
                           disabled={mutations.returnRental.isPending}
                         >
                           <Busy active={mutations.returnRental.isPending} />{" "}
                           Return
-                        </button>
+                        </Button>
                         <ActionMenu
                           label={`Actions for ${rental.bookTitle}`}
                           items={loanMenu(rental)}
@@ -196,12 +203,12 @@ export default function RentalsView({
                       </span>
                     ) : (
                       <span className="row-actions">
-                        <button
-                          className="row-action"
+                        <Button
+                          variant="row"
                           onClick={() => onDownloadRentalReceipt(rental)}
                         >
                           Receipt
-                        </button>
+                        </Button>
                         <ActionMenu
                           label={`Actions for ${rental.bookTitle}`}
                           items={loanMenu(rental)}
