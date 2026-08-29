@@ -36,7 +36,7 @@ export default function Home() {
 
 	// TODO: scroll up on coming to home page
 	return (
-		<main className="hex-bg">
+		<main>
 			<Hero />
 
 			{/* stats bar */}

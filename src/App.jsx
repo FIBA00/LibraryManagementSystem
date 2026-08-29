@@ -49,6 +49,7 @@ export default function App() {
     <>
       <Toaster position="top-center" />
       {!isProfileRoute && <NavBar />}
+
       <Routes>
         {/* essential pages */}
         <Route path="/" element={<Home />} />
@@ -75,7 +76,6 @@ export default function App() {
             <Route path="/owner" element={<LibraryOwnerProfilePage />} />
           </Route>
         </Route>
-``
         {/* <Routes element={<ProtectedRoute allowedRoles={[ "owner" ]} />}  > */}
         <Route element={<OwnerLayout />}>
           <Route path="/owner/library" element={<LibraryDashboardPage />} />

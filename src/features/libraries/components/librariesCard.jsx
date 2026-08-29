@@ -1,27 +1,53 @@
-import { Badge, BookOpen, MapPin } from "lucide-react";
+import {
+	BadgeAlert,
+	BadgeCheckIcon,
+	BadgeQuestionMark,
+	BookOpen,
+	HelpCircleIcon,
+	MapPin,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function LibraryCard({ library }) {
-  return (
-    <article className="rounded-2xl border bg-white p-5 shadow-sm hover:shadow-lg">
-      <div className="flex justify-between">
-        <span className="grid size-12 place-items-center rounded-xl bg-amber-50 text-amber-600">
-          <BookOpen />
-        </span>
-        <Badge tone={library.status === "approved" ? "success" : "warning"}>
-          {library.status}
-        </Badge>
-      </div>
-      <h3 className="mt-5 font-bold">{library.name}</h3>
-      <p className="mt-1 flex items-center gap-1 text-sm text-slate-500">
-        <MapPin size={14} /> {library.location}
-      </p>
-      <p className="mt-3 text-sma leading-6 text-slate-500">
-        {library.description}
-      </p>
-      <div className="mt-5 text-xs textslate-500">
-        <b className="text-slate-900">{library.books}</b> books .
-        <b className="text-slate-900">{library.members}</b> members
-      </div>
-    </article>
-  );
+	const statusColors = {
+		pending: "text-accent",
+		approved: "text-success",
+		rejected: "text-danger",
+	};
+	const statusIcons = {
+		pending: <BadgeQuestionMark size={25} className="text-accent" />,
+		approved: <BadgeCheckIcon size={25} className="text-success" />,
+		rejected: <BadgeAlert size={25} className="text-danger" />,
+	};
+	const textColorClass = statusColors[library.status] || "text-text-muted";
+	const currentIcon = statusIcons[library.status] || (
+		<HelpCircleIcon size={25} />
+	);
+	return (
+		<Link to={`/library/${library.id} `}>
+			<article className="shadow-card rounded-2xl  h-30 border border-accent-alt  p-2   hover:shadow-lg bg-surface hover:bg-surface-raised  ">
+				<div className="flex items-start justify-between">
+					<div className="inline-flex gap-2 p-2 rounded-xl text-text">
+						<BookOpen />
+						<h3 className="font-bold text-text">{library.name}</h3>
+					</div>
+					{/* icon section */}
+
+					<span
+						className={`inline-flex justify-center items-center gap-2 p-1 rounded-full bg-surface-hover py-1.5 px-1 w-35 font-bold ${textColorClass} `}>
+						<p>{library.status}</p>
+						{currentIcon}
+					</span>
+				</div>
+				<div className="inline-flex gap-x-4 p-2 space-x-2 ">
+					<p className=" items-center gap-1 text-sm text-text-muted hover:text-accent">
+						<MapPin size={25} /> {library.location}
+					</p>
+					<p className="leading-6 text-text-muted">
+						{library.address}
+					</p>
+				</div>
+			</article>
+		</Link>
+	);
 }

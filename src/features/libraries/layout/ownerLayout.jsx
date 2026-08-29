@@ -1,13 +1,13 @@
 import {
-  Bell,
-  BookOpen,
-  Building2,
-  ClipboardList,
-  FileBarChart,
-  LayoutDashboard,
-  Menu,
-  Settings,
-  Users,
+	Bell,
+	BookOpen,
+	
+	ClipboardList,
+	FileBarChart,
+	LayoutDashboard,
+	Menu,
+	Settings,
+	Users,
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
@@ -15,9 +15,9 @@ import { NavLink, Outlet } from "react-router-dom";
 // internal imports
 
 import ThemeToggle from "../../../components/theme.jsx";
+import Sidebar from "../../../components/sidebar.jsx";
 import { useCurrentUser } from "../../auth/hooks/useAuth.js";
 import { getInitials } from "../../../lib/utils.js";
-import Sidebar from "../../../components/sidebar.jsx";
 
 const NavLinks = [
   { key: "home", to: "/", label: "Home" },
@@ -26,24 +26,23 @@ const NavLinks = [
 ];
 
 const sections = [
-  {
-    label: "Workspace",
-    items: [
-      ["/admin/overview", "Overview", LayoutDashboard],
-      ["/admin/libraries", "Libraries", Building2],
-      ["/admin/users", "Users", Users],
-    ],
-  },
-  {
-    label: "Circulation",
-    items: [
-      ["/admin/books", "Books & catalog", BookOpen],
-      ["/admin/borrowings", "Borrowings", ClipboardList],
-      ["/admin/libraries/members", "Members", Users],
-    ],
-  },
-  { label: "Insights", items: [["/admin/reports", "Reports", FileBarChart]] },
-  { label: "System", items: [["/admin/settings", "Settings", Settings]] },
+	{
+		label: "Workspace",
+		items: [
+			["/owner/library", "Overview", LayoutDashboard],
+			["/owner/library/members", "Members", Users],
+			["/owner/library/books", "Books & catalog", BookOpen],
+			["/owner/library/borrowings", "Borrowings", ClipboardList],
+		],
+	},
+
+	{
+		label: "System",
+		items: [
+			["/owner/library/reports", "Reports", FileBarChart],
+			["/owner/library/settings", "Settings", Settings],
+		],
+	},
 ];
 
 export default function OwnerLayout() {

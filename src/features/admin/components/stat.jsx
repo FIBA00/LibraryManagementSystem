@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Stat({ label, value, change, Icon }) {
 	return (
-		<div className="rounded-2xl lg:w-3xs border border-border bg-surface p-5 shadow-sm shadow-accent-alt">
+		<div className="rounded-2xl lg:w-3xs border border-border bg-surface p-5 shadow-sm shadow-accent-alt ">
 			<div className="flex items-start justify-between">
 				<div className="grid size-10 place-items-center rounded-xl bg-surface text-text">
 					<Icon size={19} />
